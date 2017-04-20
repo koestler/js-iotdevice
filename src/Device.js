@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import NumericValue from './NumericValue';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class Device extends Component {
+
+    static propTypes = {
+        id: PropTypes.string.isRequired,
+    };
+
     constructor(props) {
         super(props);
 
@@ -13,13 +19,9 @@ class Device extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/api/v0/device/giumaglio-24v')
+        axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
             .then(res => {
-
                 const resNumericValues = res.data.NumericValues;
-
-                console.log(resNumericValues);
-
                 const numericValues = [
                     'MainVoltage',
                     'Current',
@@ -27,12 +29,10 @@ class Device extends Component {
                 ].map(
                     (name) => {
                         let numericValue = resNumericValues[name];
-                        console.log(numericValue);
                         numericValue.Name = name;
                         return numericValue;
                     }
                 );
-
                 this.setState({numericValues});
             });
     }
@@ -40,7 +40,7 @@ class Device extends Component {
     render() {
         return (
             <div className="device">
-                <h2>Main Battery</h2>
+                <h2>{ this.props.id }</h2>
                 <ul>
                     {
                         this.state.numericValues.map(
