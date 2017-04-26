@@ -31,7 +31,7 @@ class App extends Component {
                 </div>
                 {
                     this.state.deviceIds.map(
-                        deviceId => <Device id={ deviceId }/>
+                        deviceId => <Device key={deviceId} id={deviceId}/>
                     )
                 }
             </div>
