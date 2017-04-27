@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import Gauge from'./Gauge';
 
 class NumericValue extends Component {
 
@@ -13,6 +14,15 @@ class NumericValue extends Component {
         return (
             <div className="NumericValue">
                 {this.props.name}: {this.props.value} {this.props.unit}
+                {
+                    this.props.name === 'StateOfCharge' ?
+                        <Gauge
+                            key={this.props.name}
+                            name={this.props.name}
+                            value={this.props.value}
+                            unit={this.props.unit}/>
+                        : null
+                }
             </div>
         );
     };
