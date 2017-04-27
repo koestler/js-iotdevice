@@ -18,7 +18,7 @@ class Device extends Component {
 
     }
 
-    componentDidMount() {
+    fetchDataFromApi = () => {
         axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
             .then(res => {
                 const resNumericValues = res.data.NumericValues;
@@ -29,12 +29,24 @@ class Device extends Component {
                 ].map(
                     (name) => {
                         let numericValue = resNumericValues[name];
+                        numericValue.Value += Math.random();
                         numericValue.Name = name;
                         return numericValue;
                     }
                 );
+
                 this.setState({numericValues});
             });
+    };
+
+    componentDidMount() {
+        this.fetchDataFromApi();
+        const intervalId = setInterval(this.fetchDataFromApi, 2000);
+        this.setState({intervalId});
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
     }
 
     render() {
@@ -57,7 +69,6 @@ class Device extends Component {
         );
     }
 }
-
 
 
 export default Device;

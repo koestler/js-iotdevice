@@ -18,14 +18,18 @@ class Gauge extends Component {
     };
 
     componentDidMount() {
-        let el = ReactDOM.findDOMNode(this);
-        let gauge = ResponsiveGauge(el, this.props.configuration);
-        gauge.update(this.props.value);
+        let node = ReactDOM.findDOMNode(this);
+        this.gauge = ResponsiveGauge(node, this.props.configuration);
+        this.gauge.update(this.props.value);
+    }
+
+    componentWillReceiveProps(newProps) {
+        this.gauge.update(newProps.value);
     }
 
     render() {
         return (
-            <div className={this.props.class}></div>
+            <div className={this.props.class} />
         );
     };
 
