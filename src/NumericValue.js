@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {VoltageGauge} from'./Gauge';
+import {PercentageGauge, VoltageGauge} from'./Gauge';
 
 class NumericValue extends Component {
 
@@ -19,6 +19,13 @@ class NumericValue extends Component {
                         <VoltageGauge
                             key={this.props.name}
                             voltageRange={12}
+                            value={this.props.value}/>
+                        : null
+                }
+                {
+                    this.props.name === 'StateOfCharge' ?
+                        <PercentageGauge
+                            key={this.props.name}
                             value={this.props.value}/>
                         : null
                 }

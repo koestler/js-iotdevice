@@ -27,12 +27,7 @@ class Gauge extends Component {
         this.gauge.update(newProps.value);
     }
 
-    render() {
-        return (
-            <div className={this.props.class} />
-        );
-    };
-
+    render = () => <div className={this.props.class}/>;
 }
 
 class VoltageGauge extends Component {
@@ -42,37 +37,74 @@ class VoltageGauge extends Component {
         voltageRange: PropTypes.number.isRequired,
     };
 
-    render() {
-        const configuration = {
-            ring: {
-                minAngle: -90,
-                maxAngle: 0,
-                colors: ['#E14C4C', '#FFA3AC', '#FFE4E4', '#FFF', '#FFF'],
-                border: true
-            },
-            data: {
-                min: 2 / 3 * this.props.voltageRange,
-                max: 4 / 3 * this.props.voltageRange,
-                value: this.props.value
-            },
-            labels: {
-                number: 4
-            },
-            value: {
-                show: true,
-                decimalsMax: 2,
-                unit: 'V'
-            }
-        };
+    configuration = {
+        ring: {
+            minAngle: -90,
+            maxAngle: 0,
+            colors: ['#E14C4C', '#FFA3AC', '#FFE4E4', '#FFF', '#FFF'],
+            border: true
+        },
+        data: {
+            min: 2 / 3 * this.props.voltageRange,
+            max: 4 / 3 * this.props.voltageRange,
+            value: this.props.value
+        },
+        labels: {
+            number: 4
+        },
+        value: {
+            show: true,
+            decimalsMax: 2,
+            unit: 'V'
+        }
+    };
 
-        return (
-            <Gauge value={this.props.value}
-                   configuration={configuration}
-                   class="VoltageGauge"/>
-        )
+    render = () =>
+        <Gauge value={this.props.value}
+               configuration={this.configuration}
+               class="VoltageGauge"/>;
 
-    }
 }
 
-export {Gauge, VoltageGauge};
+class PercentageGauge extends Component {
+
+    static propTypes = {
+        value: PropTypes.number.isRequired,
+    };
+
+    configuration = {
+        pointer: {
+            type: 'filament'
+        },
+        ring: {
+            minAngle: -45,
+            maxAngle: 45,
+            colors: 'gradient',
+            startColor: '#ff0007',
+            endColor: '#00ca1e',
+            border: true
+        },
+        data: {
+            value: 0,
+            min: 0,
+            max: 100
+        },
+        value: {
+            shift: 30,
+            decimalsMax: 2,
+            unit: '%'
+        },
+        labels: {
+            formatter: (value) => value + '%'
+        }
+    };
+
+    render = () =>
+        <Gauge value={this.props.value}
+               configuration={this.configuration}
+               class="VoltageGauge"/>;
+
+}
+
+export {Gauge, VoltageGauge, PercentageGauge};
 export default Gauge;
