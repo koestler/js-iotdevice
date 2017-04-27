@@ -34,7 +34,8 @@ class VoltageGauge extends Component {
 
     static propTypes = {
         value: PropTypes.number.isRequired,
-        voltageRange: PropTypes.number.isRequired,
+        range: PropTypes.number.isRequired,
+        unit: PropTypes.string.isRequired,
     };
 
     configuration = {
@@ -42,20 +43,21 @@ class VoltageGauge extends Component {
             minAngle: -90,
             maxAngle: 0,
             colors: ['#E14C4C', '#FFA3AC', '#FFE4E4', '#FFF', '#FFF'],
-            border: true
+            border: true,
         },
         data: {
-            min: 2 / 3 * this.props.voltageRange,
-            max: 4 / 3 * this.props.voltageRange,
-            value: this.props.value
+            min: 3 / 4 * this.props.range,
+            max: 5 / 4 * this.props.range,
+            value: this.props.value,
         },
         labels: {
-            number: 4
+            number: 6+1,
+            decimalsMax: 2,
         },
         value: {
             show: true,
             decimalsMax: 2,
-            unit: 'V'
+            unit: this.props.unit,
         }
     };
 
@@ -74,25 +76,26 @@ class PercentageGauge extends Component {
 
     configuration = {
         pointer: {
-            type: 'filament'
+            type: 'filler',
+            colors: 'gradient',
+            startColor: '#ff0007',
+            endColor: '#00ca1e',
         },
         ring: {
             minAngle: -45,
             maxAngle: 45,
-            colors: 'gradient',
-            startColor: '#ff0007',
-            endColor: '#00ca1e',
-            border: true
+            colors: false,
+            border: false,
         },
         data: {
             value: 0,
             min: 0,
-            max: 100
+            max: 100,
         },
         value: {
             shift: 30,
-            decimalsMax: 2,
-            unit: '%'
+            decimalsMax: 0,
+            unit: '%',
         },
         labels: {
             formatter: (value) => value + '%'
@@ -106,5 +109,41 @@ class PercentageGauge extends Component {
 
 }
 
-export {Gauge, VoltageGauge, PercentageGauge};
-export default Gauge;
+class CurrentGauge extends Component {
+
+    static propTypes = {
+        value: PropTypes.number.isRequired,
+        range: PropTypes.number.isRequired,
+        unit: PropTypes.string.isRequired,
+    };
+
+    configuration = {
+        ring: {
+            minAngle: -90,
+            maxAngle: 90,
+            border: true,
+        },
+        data: {
+            min: -this.props.range,
+            max: +this.props.range,
+            value: 0,
+        },
+        labels: {
+            number: 11,
+            decimalsMax: 2
+        },
+        value: {
+            shift: 20,
+            decimalsMax: 2,
+            unit: this.props.unit
+        }
+    };
+
+    render = () =>
+        <Gauge value={this.props.value}
+               configuration={this.configuration}
+               class="VoltageGauge"/>;
+
+}
+
+export {Gauge, VoltageGauge, PercentageGauge, CurrentGauge};
