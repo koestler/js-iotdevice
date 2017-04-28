@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap';
-
 import 'bootstrap/dist/css/bootstrap.css';
-
-import Device from './Device';
+import DeviceWrapper from './DeviceWrapper';
 
 class App extends Component {
 
@@ -35,7 +33,7 @@ class App extends Component {
                 </Row>
                 <Col>
                     {this.state.deviceIds.map(
-                        deviceId => <Device key={deviceId} id={deviceId}/>
+                        deviceId => <DeviceWrapper key={deviceId} id={deviceId}/>
                     )}
                 </Col>
             </Grid>

@@ -5,7 +5,7 @@ import GaugeWrapper from './GauageWrapper';
 import {CurrentGauge, PercentageGauge, VoltageGauge} from './Gauge';
 
 
-class Bmv700 extends Component {
+class DeviceBmv700 extends Component {
 
     static propTypes = {
         numericValues: PropTypes.object.isRequired,
@@ -50,4 +50,4 @@ class Bmv700 extends Component {
     }
 }
 
-export default Bmv700;
+export default DeviceBmv700;

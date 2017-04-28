@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import DeviceValues from './DeviceValues';
 import PropTypes from 'prop-types';
-import {Panel, Glyphicon} from 'react-bootstrap';
-
+import axios from 'axios';
+import DeviceBmv700 from './DeviceBmv700'
 
 class Device extends Component {
 
@@ -14,32 +13,43 @@ class Device extends Component {
         super(props);
 
         this.state = {
-            panelOpen: false,
+            deviceData: null,
         }
-
     }
+
+    fetchDataFromApi = () => {
+        axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
+            .then(res => {
+                this.setState({deviceData: res.data});
+            });
+    };
+
+    componentDidMount() {
+        this.fetchDataFromApi();
+        const intervalId = setInterval(this.fetchDataFromApi, 2000);
+        this.setState({intervalId});
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId);
+    }
+
+    specificDevices = {
+        "bmv700": DeviceBmv700
+    };
 
     render() {
-        const header = (
-            <div onClick={() => this.setState({panelOpen: !this.state.panelOpen})}>
-                {this.props.id}
-                <span className="pull-right">
-                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.panelOpen ? 'close' : 'open')}/>
-                </span>
-            </div>
-        );
+        // render nothing if device data is not present
+        if (this.state.deviceData === null) {
+            return null;
+        }
 
-        return (
-            <Panel header={header}
-                   bsStyle="primary"
-                   collapsible
-                   expanded={this.state.panelOpen}
-            >
-                {this.state.panelOpen ? <DeviceValues id={this.props.id}/> : null}
-            </Panel>
-        );
+        const SpecificDevice = this.specificDevices[this.state.deviceData.Type];
+
+        return <SpecificDevice
+            numericValues={this.state.deviceData.NumericValues}
+        />;
     }
 }
-
 
 export default Device;
