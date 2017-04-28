@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DeviceValues from './DeviceValues';
 import PropTypes from 'prop-types';
-import {Panel} from 'react-bootstrap';
+import {Panel, Glyphicon} from 'react-bootstrap';
 
 
 class Device extends Component {
@@ -14,16 +14,20 @@ class Device extends Component {
         super(props);
 
         this.state = {
-            panelOpen: true,
+            panelOpen: false,
         }
 
     }
 
     render() {
-        const header =
-            <p onClick={() => this.setState({panelOpen: !this.state.panelOpen})}>
+        const header = (
+            <div onClick={() => this.setState({panelOpen: !this.state.panelOpen})}>
                 {this.props.id}
-            </p>;
+                <span className="pull-right">
+                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.panelOpen ? 'close' : 'open')}/>
+                </span>
+            </div>
+        );
 
         return (
             <Panel header={header}

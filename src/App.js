@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
 import axios from 'axios';
-//import {Row} from 'react-bootstrap';
+import {Grid, Row, Col, PageHeader} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -28,18 +27,18 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div className="App">
-                    <div className="App-header">
-                        <h1>Giumaglio Dashboard</h1>
-                    </div>
-                    {
-                        this.state.deviceIds.map(
-                            deviceId => <Device key={deviceId} id={deviceId}/>
-                        )
-                    }
-                </div>
-            </div>
+            <Grid>
+                <Row>
+                    <Col>
+                        <PageHeader>Giumaglio <small>Dashboard</small></PageHeader>
+                    </Col>
+                </Row>
+                <Col>
+                    {this.state.deviceIds.map(
+                        deviceId => <Device key={deviceId} id={deviceId}/>
+                    )}
+                </Col>
+            </Grid>
         );
     }
 }
