@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import NumericValue from './NumericValue';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {Row, Col} from 'react-bootstrap';
+import Bmv700 from './Bmv700'
 
 class DeviceValues extends Component {
 
@@ -14,28 +13,14 @@ class DeviceValues extends Component {
         super(props);
 
         this.state = {
-            numericValues: [],
+            deviceData: null,
         }
     }
 
     fetchDataFromApi = () => {
         axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
             .then(res => {
-                const resNumericValues = res.data.NumericValues;
-                const numericValues = [
-                    'MainVoltage',
-                    'Current',
-                    'StateOfCharge'
-                ].map(
-                    (name) => {
-                        let numericValue = resNumericValues[name];
-                        numericValue.Value += Math.random();
-                        numericValue.Name = name;
-                        return numericValue;
-                    }
-                );
-
-                this.setState({numericValues});
+                this.setState({deviceData: res.data});
             });
     };
 
@@ -49,22 +34,21 @@ class DeviceValues extends Component {
         clearInterval(this.state.intervalId);
     }
 
+    specificDevices = {
+        "bmv700": Bmv700
+    };
+
     render() {
-        return (
-            <Row>
-                {this.state.numericValues.map(
-                    (numericValue) => (
-                        <Col key={numericValue.Name}>
-                            <NumericValue
-                                key={numericValue.Name}
-                                name={numericValue.Name}
-                                value={numericValue.Value}
-                                unit={numericValue.Unit}/>
-                        </Col>
-                    )
-                )}
-            </Row>
-        );
+        // render nothing if device data is not present
+        if (this.state.deviceData === null) {
+            return null;
+        }
+
+        const SpecificDevice = this.specificDevices[this.state.deviceData.Type];
+
+        return <SpecificDevice
+            numericValues={this.state.deviceData.NumericValues}
+        />;
     }
 }
 
