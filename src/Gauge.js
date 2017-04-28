@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ResponsiveGauge from './ResponsiveGauge';
 import './ResponsiveGauge.css';
+import './Gauge.css';
+
 
 /**
- * todo: this class should be based on the pattern shown in
+ * this class is based on the pattern shown in
  * https://github.com/ryanflorence/react-training/blob/gh-pages/lessons/05-wrapping-dom-libs.md
  */
 
@@ -27,7 +29,7 @@ class Gauge extends Component {
         this.gauge.update(newProps.value);
     }
 
-    render = () => <div className={this.props.class}/>;
+    render = () => <div className={'Gauge ' + this.props.class}/>;
 }
 
 class VoltageGauge extends Component {
@@ -87,7 +89,7 @@ class PercentageGauge extends Component {
         },
         ring: {
             minAngle: -45,
-            maxAngle: 45,
+            maxAngle: +45,
             colors: false,
             border: false,
         },
@@ -109,7 +111,7 @@ class PercentageGauge extends Component {
     render = () =>
         <Gauge value={this.props.value}
                configuration={this.configuration}
-               class="VoltageGauge"/>;
+               class="PercentageGauge"/>;
 
 }
 
@@ -150,7 +152,7 @@ class CurrentGauge extends Component {
     render = () =>
         <Gauge value={this.props.value}
                configuration={this.configuration}
-               class="VoltageGauge"/>;
+               class="CurrentGauge"/>;
 
 }
 

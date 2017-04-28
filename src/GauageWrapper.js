@@ -17,7 +17,7 @@ class GauageWrapper extends Component {
 
         return (
             <OverlayTrigger placement="top" overlay={tooltip}>
-                <div className="NumericValue">
+                <div>
                     {this.props.children}
                 </div>
             </OverlayTrigger>
