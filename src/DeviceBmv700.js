@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col, Table} from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import GaugeWrapper from './GauageWrapper';
 import {CurrentGauge, PercentageGauge, VoltageGauge} from './Gauge';
-
 
 class DeviceBmv700 extends Component {
 
     static propTypes = {
         numericValues: PropTypes.object.isRequired,
     };
-
-    getNiceName = (name) => name.replace(/([A-Z])/g, ' $1');
 
     render() {
         const numericValues = this.props.numericValues;
@@ -61,27 +58,6 @@ class DeviceBmv700 extends Component {
                             />
                         </GaugeWrapper>
                     </Col>
-                </Row>
-                <Row>
-                    <Table responsive>
-                        <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Value</th>
-                            <th>Unit</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {Object.keys(numericValues).map(
-                                (key) =>
-                                <tr key={key}>
-                                    <td className="text-right">{this.getNiceName(key)}</td>
-                                    <td className="text-right">{numericValues[key].Value}</td>
-                                    <td>{numericValues[key].Unit}</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </Table>
                 </Row>
             </div>
         );

@@ -28,7 +28,7 @@ class App extends Component {
             <Grid>
                 <Row>
                     <Col>
-                        <PageHeader>Giumaglio <small>Dashboard</small></PageHeader>
+                        <PageHeader>Giumaglio <small>ve-sensors Dashboard</small></PageHeader>
                     </Col>
                 </Row>
                 <Col>

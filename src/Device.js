@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import {Row, Col} from 'react-bootstrap';
 import DeviceBmv700 from './DeviceBmv700'
+import NumericValuesTable from "./NumericValuesTable";
 
 class Device extends Component {
 
@@ -46,9 +48,19 @@ class Device extends Component {
 
         const SpecificDevice = this.specificDevices[this.state.deviceData.Type];
 
-        return <SpecificDevice
-            numericValues={this.state.deviceData.NumericValues}
-        />;
+        return <Row>
+            <Col xs={12} lg={6}>
+                <SpecificDevice
+                    numericValues={this.state.deviceData.NumericValues}
+                />
+            </Col>
+            <Col xs={12} lg={6}>
+                <NumericValuesTable
+                    numericValues={this.state.deviceData.NumericValues}
+                />
+            </Col>
+        </Row>
+
     }
 }
 

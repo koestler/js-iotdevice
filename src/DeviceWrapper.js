@@ -13,17 +13,16 @@ class DeviceWrapper extends Component {
         super(props);
 
         this.state = {
-            panelOpen: true,
+            open: true,
         }
-
     }
 
     render() {
         const header = (
-            <div onClick={() => this.setState({panelOpen: !this.state.panelOpen})}>
+            <div onClick={() => this.setState({open: !this.state.open})}>
                 {this.props.id}
                 <span className="pull-right">
-                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.panelOpen ? 'close' : 'open')}/>
+                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.open ? 'close' : 'open')}/>
                 </span>
             </div>
         );
@@ -32,9 +31,9 @@ class DeviceWrapper extends Component {
             <Panel header={header}
                    bsStyle="primary"
                    collapsible
-                   expanded={this.state.panelOpen}
+                   expanded={this.state.open}
             >
-                {this.state.panelOpen ? <Device id={this.props.id}/> : null}
+                {this.state.open ? <Device id={this.props.id}/> : null}
             </Panel>
         );
     }
