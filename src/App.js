@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
+//import {Row} from 'react-bootstrap';
+
+import 'bootstrap/dist/css/bootstrap.css';
 
 import Device from './Device';
 
@@ -25,15 +28,17 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <div className="App-header">
-                    <h1>Giumaglio Dashboard</h1>
+            <div>
+                <div className="App">
+                    <div className="App-header">
+                        <h1>Giumaglio Dashboard</h1>
+                    </div>
+                    {
+                        this.state.deviceIds.map(
+                            deviceId => <Device key={deviceId} id={deviceId}/>
+                        )
+                    }
                 </div>
-                {
-                    this.state.deviceIds.map(
-                        deviceId => <Device key={deviceId} id={deviceId}/>
-                    )
-                }
             </div>
         );
     }

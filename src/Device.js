@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import NumericValue from './NumericValue';
+import DeviceValues from './DeviceValues';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import {Panel} from 'react-bootstrap';
+
 
 class Device extends Component {
 
@@ -13,59 +14,25 @@ class Device extends Component {
         super(props);
 
         this.state = {
-            numericValues: []
+            panelOpen: true,
         }
 
     }
 
-    fetchDataFromApi = () => {
-        axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
-            .then(res => {
-                const resNumericValues = res.data.NumericValues;
-                const numericValues = [
-                    'MainVoltage',
-                    'Current',
-                    'StateOfCharge'
-                ].map(
-                    (name) => {
-                        let numericValue = resNumericValues[name];
-                        numericValue.Value += Math.random();
-                        numericValue.Name = name;
-                        return numericValue;
-                    }
-                );
-
-                this.setState({numericValues});
-            });
-    };
-
-    componentDidMount() {
-        this.fetchDataFromApi();
-        const intervalId = setInterval(this.fetchDataFromApi, 2000);
-        this.setState({intervalId});
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.state.intervalId);
-    }
-
     render() {
+        const header =
+            <p onClick={() => this.setState({panelOpen: !this.state.panelOpen})}>
+                {this.props.id}
+            </p>;
+
         return (
-            <div className="device">
-                <h2>{ this.props.id }</h2>
-                <ul>
-                    {
-                        this.state.numericValues.map(
-                            (numericValue) =>
-                                <NumericValue
-                                    key={numericValue.Name}
-                                    name={numericValue.Name}
-                                    value={numericValue.Value}
-                                    unit={numericValue.Unit}/>
-                        )
-                    }
-                </ul>
-            </div>
+            <Panel header={header}
+                   bsStyle="primary"
+                   collapsible
+                   expanded={this.state.panelOpen}
+            >
+                {this.state.panelOpen ? <DeviceValues id={this.props.id}/> : null}
+            </Panel>
         );
     }
 }

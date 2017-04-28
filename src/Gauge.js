@@ -38,6 +38,10 @@ class VoltageGauge extends Component {
         unit: PropTypes.string.isRequired,
     };
 
+    static defaultProps = {
+        range: 12
+    };
+
     configuration = {
         ring: {
             minAngle: -90,
@@ -51,7 +55,7 @@ class VoltageGauge extends Component {
             value: this.props.value,
         },
         labels: {
-            number: 6+1,
+            number: 6 + 1,
             decimalsMax: 2,
         },
         value: {
@@ -115,6 +119,10 @@ class CurrentGauge extends Component {
         value: PropTypes.number.isRequired,
         range: PropTypes.number.isRequired,
         unit: PropTypes.string.isRequired,
+    };
+
+    static defaultProps = {
+        range: 3
     };
 
     configuration = {

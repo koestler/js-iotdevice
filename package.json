@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
+    "bootstrap": "^3.3.7",
     "d3": "^3",
     "numbro": "^1.10.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
