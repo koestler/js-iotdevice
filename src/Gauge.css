@@ -1,7 +1,5 @@
 .PercentageGauge {
-    /* this is a hack around ResponseGauges with angle from -45 to 45 are not centered*/
-    margin-left: -18%
-}
-
-.Gauge {
+    /* this is a hack around ResponseGauges with angle from -45 to 45 are not centered */
+    margin-left: -18%;
+    margin-bottom: -29%;
 }
