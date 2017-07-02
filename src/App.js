@@ -11,7 +11,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            deviceIds: []
+            devices: []
         }
 
     }
@@ -20,8 +20,8 @@ class App extends Component {
         console.log(config.get('apiUrl'));
         axios.get(config.get('apiUrl') + 'device/')
             .then(res => {
-                const deviceIds = res.data;
-                this.setState({deviceIds});
+                const devices = res.data;
+                this.setState({devices});
             });
     }
 
@@ -34,8 +34,8 @@ class App extends Component {
                     </Col>
                 </Row>
                 <Col>
-                    {this.state.deviceIds.map(
-                        deviceId => <DeviceWrapper key={deviceId} id={deviceId}/>
+                    {this.state.devices.map(
+                        device => <DeviceWrapper key={device.Name} id={device.Name} model={device.Model} />
                     )}
                 </Col>
             </Grid>

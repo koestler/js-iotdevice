@@ -7,6 +7,7 @@ class DeviceWrapper extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
+        model: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -33,7 +34,7 @@ class DeviceWrapper extends Component {
                    collapsible
                    expanded={this.state.open}
             >
-                {this.state.open ? <Device id={this.props.id}/> : null}
+                {this.state.open ? <Device id={this.props.id} model={this.props.model} /> : null}
             </Panel>
         );
     }
