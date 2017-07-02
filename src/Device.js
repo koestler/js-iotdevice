@@ -15,14 +15,14 @@ class Device extends Component {
         super(props);
 
         this.state = {
-            deviceData: null,
+            roundedValues: null,
         }
     }
 
     fetchDataFromApi = () => {
-        axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
+        axios.get('http://localhost:8000/api/v0/device/' + this.props.id + '/RoundedValues')
             .then(res => {
-                this.setState({deviceData: res.data});
+                this.setState({roundedValues: res.data});
             });
     };
 
@@ -42,21 +42,21 @@ class Device extends Component {
 
     render() {
         // render nothing if device data is not present
-        if (this.state.deviceData === null) {
+        if (this.state.roundedValues === null) {
             return null;
         }
 
-        const SpecificDevice = this.specificDevices[this.state.deviceData.Type];
+        const SpecificDevice = this.specificDevices[this.props.model];
 
         return <Row>
             <Col xs={12} lg={6}>
                 <SpecificDevice
-                    numericValues={this.state.deviceData.NumericValues}
+                    numericValues={this.state.roundedValues}
                 />
             </Col>
             <Col xs={12} lg={6}>
                 <NumericValuesTable
-                    numericValues={this.state.deviceData.NumericValues}
+                    numericValues={this.state.roundedValues}
                 />
             </Col>
         </Row>

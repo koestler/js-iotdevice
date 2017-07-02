@@ -10,7 +10,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            deviceIds: []
+            devices: []
         }
 
     }
@@ -18,8 +18,8 @@ class App extends Component {
     componentDidMount() {
         axios.get('http://localhost:8000/api/v0/device/')
             .then(res => {
-                const deviceIds = res.data;
-                this.setState({deviceIds});
+                const devices = res.data;
+                this.setState({devices});
             });
     }
 
@@ -32,8 +32,8 @@ class App extends Component {
                     </Col>
                 </Row>
                 <Col>
-                    {this.state.deviceIds.map(
-                        deviceId => <DeviceWrapper key={deviceId} id={deviceId}/>
+                    {this.state.devices.map(
+                        device => <DeviceWrapper key={device.Name} id={device.Name} model={device.Model} />
                     )}
                 </Col>
             </Grid>
