@@ -28,8 +28,19 @@ class Device extends Component {
 
     componentDidMount() {
         this.fetchDataFromApi();
-        const intervalId = setInterval(this.fetchDataFromApi, 2000);
-        this.setState({intervalId});
+
+        //const intervalId = setInterval(this.fetchDataFromApi, 2000);
+        //this.setState({intervalId});
+
+        const socket = new WebSocket('ws://localhost:8000/api/v0/ws/device/' + this.props.id + '/RoundedValues');
+
+        socket.addEventListener('open', function (event) {
+            socket.send('Hello Server!');
+        });
+
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server', event.data);
+        });
     }
 
     componentWillUnmount() {
