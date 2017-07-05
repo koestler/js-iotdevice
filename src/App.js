@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import DeviceWrapper from './DeviceWrapper';
+import config from 'react-global-configuration';
 
 class App extends Component {
 
@@ -16,7 +17,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/api/v0/device/')
+        console.log(config.get('apiUrl'));
+        axios.get(config.get('apiUrl') + 'device/')
             .then(res => {
                 const deviceIds = res.data;
                 this.setState({deviceIds});

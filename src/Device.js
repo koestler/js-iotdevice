@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Row, Col} from 'react-bootstrap';
 import DeviceBmv700 from './DeviceBmv700'
 import NumericValuesTable from "./NumericValuesTable";
+import config from 'react-global-configuration';
 
 class Device extends Component {
 
@@ -20,7 +21,7 @@ class Device extends Component {
     }
 
     fetchDataFromApi = () => {
-        axios.get('http://localhost:8000/api/v0/device/' + this.props.id)
+        axios.get(config.get('apiUrl') + 'device/' + this.props.id)
             .then(res => {
                 this.setState({deviceData: res.data});
             });
