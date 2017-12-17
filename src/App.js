@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import axios from 'axios';
 import {Grid, Row, Col, PageHeader} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import DeviceWrapper from './DeviceWrapper';
+import Websocket from 'react-websocket';
 
-class App extends Component {
+class App extends PureComponent {
 
     constructor(props) {
         super(props);

@@ -1,29 +1,23 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Device from './Device';
 import PropTypes from 'prop-types';
 import {Panel, Glyphicon} from 'react-bootstrap';
 
-class DeviceWrapper extends Component {
+class DeviceWrapper extends PureComponent {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
         model: PropTypes.string.isRequired,
+        open: PropTypes.bool.isRequired,
+        roundedValues: PropTypes.array,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            open: true,
-        }
-    }
 
     render() {
         const header = (
-            <div onClick={() => this.setState({open: !this.state.open})}>
+            <div onClick="">
                 {this.props.id}
                 <span className="pull-right">
-                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.open ? 'close' : 'open')}/>
+                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.props.open ? 'close' : 'open')}/>
                 </span>
             </div>
         );
@@ -34,7 +28,7 @@ class DeviceWrapper extends Component {
                    collapsible
                    expanded={this.state.open}
             >
-                {this.state.open ? <Device id={this.props.id} model={this.props.model} /> : null}
+                {this.props.open ? <Device id={this.props.id} model={this.props.model} /> : null}
             </Panel>
         );
     }

@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
-class GauageWrapper extends Component {
+class GauageWrapper extends PureComponent {
 
     static propTypes = {
         name: PropTypes.string.isRequired,

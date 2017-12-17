@@ -1,51 +1,14 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import {Row, Col} from 'react-bootstrap';
 import DeviceBmv700 from './DeviceBmv700'
-import NumericValuesTable from "./NumericValuesTable";
 
-class Device extends Component {
+class Device extends PureComponent {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
+        roundedValues: PropTypes.array,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            roundedValues: null,
-        }
-    }
-
-    fetchDataFromApi = () => {
-        axios.get('http://localhost:8000/api/v0/device/' + this.props.id + '/RoundedValues')
-            .then(res => {
-                this.setState({roundedValues: res.data});
-            });
-    };
-
-    componentDidMount() {
-        this.fetchDataFromApi();
-
-        //const intervalId = setInterval(this.fetchDataFromApi, 2000);
-        //this.setState({intervalId});
-
-        const socket = new WebSocket('ws://localhost:8000/api/v0/ws/device/' + this.props.id + '/RoundedValues');
-
-        socket.addEventListener('open', function (event) {
-            socket.send('Hello Server!');
-        });
-
-        socket.addEventListener('message', function (event) {
-            console.log('Message from server', event.data);
-        });
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.state.intervalId);
-    }
 
     specificDevices = {
         "bmv700": DeviceBmv700
@@ -53,25 +16,15 @@ class Device extends Component {
 
     render() {
         // render nothing if device data is not present
-        if (this.state.roundedValues === null) {
+        if (this.props.roundedValues === null) {
             return null;
         }
 
         const SpecificDevice = this.specificDevices[this.props.model];
 
-        return <Row>
-            <Col xs={12} lg={6}>
-                <SpecificDevice
-                    numericValues={this.state.roundedValues}
-                />
-            </Col>
-            <Col xs={12} lg={6}>
-                <NumericValuesTable
-                    numericValues={this.state.roundedValues}
-                />
-            </Col>
-        </Row>
-
+        return <SpecificDevice
+            numericValues={this.props.roundedValues}
+        />
     }
 }
 

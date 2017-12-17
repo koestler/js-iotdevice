@@ -1,20 +1,13 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Table, Glyphicon} from 'react-bootstrap';
 
-class NumericValuesTable extends Component {
+class NumericValuesTable extends PureComponent {
 
     static propTypes = {
         numericValues: PropTypes.object.isRequired,
+        open: PropTypes.bool.isRequired,
     };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            open: false,
-        }
-    }
 
     getNiceName = (name) => name.replace(/([A-Z])/g, ' $1');
 
@@ -22,11 +15,11 @@ class NumericValuesTable extends Component {
         const numericValues = this.props.numericValues;
         return (
             <div>
-                <Button onClick={() => this.setState({open: !this.state.open})}>
-                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.open ? 'close' : 'open')}/>
+                <Button onClick="">
+                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.props.open ? 'close' : 'open')}/>
                     &nbsp;Numeric Values
                 </Button>
-                {this.state.open ?
+                {this.props.open ?
                     <Table responsive>
                         <thead>
                         <tr>
