@@ -17,7 +17,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        console.log(config.get('apiUrl'));
         axios.get(config.get('apiUrl') + 'device/')
             .then(res => {
                 const devices = res.data;
