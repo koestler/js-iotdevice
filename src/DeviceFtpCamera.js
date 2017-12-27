@@ -14,34 +14,26 @@ class DeviceFtpCamera extends Component {
         super(props)
 
         this.state = {
-            roundedValues: null,
+            timestamp: Date.now(),
+            timestampInterval: null
         }
-    }
-
-    fetchDataFromApi = () => {
-        axios.get(config.get('apiUrl') + 'device/' + this.props.id + '/RoundedValues')
-          .then(res => {
-              this.setState({roundedValues: res.data})
-          })
     }
 
     componentDidMount () {
-        this.fetchDataFromApi()
-        const intervalId = setInterval(this.fetchDataFromApi, 2000)
-        this.setState({intervalId})
+        const timestampInterval = setInterval(() => {this.setState({timestamp: Date.now()})}, 2000)
+        this.setState({timestampInterval})
     }
 
     componentWillUnmount () {
-        clearInterval(this.state.intervalId)
+        clearInterval(this.state.timestampInterval)
     }
 
     render () {
-        // render nothing if device data is not present
-        if (this.state.roundedValues === null) {
-            return null
-        }
-
-        return <p> ftp camera</p>
+        const imgSrc = config.get('apiUrl') + 'device/' + this.props.id + '/Picture/Thumb?timestamp='
+          + this.state.timestamp
+        return <div className="device-ftp-camera">
+            <img src={imgSrc} alt={this.props.id}/>
+        </div>
     }
 }
 

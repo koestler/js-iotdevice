@@ -50,7 +50,7 @@ class DeviceBmv700 extends Component {
         const Current = values.Current
         const Power = values.Power
 
-        return <Row>
+        return <Row className="device-bmv">
             <Col xs={12} lg={6}>
                 <Row>
                     <Col key="StateOfCharge" xs={8}>
