@@ -1,42 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import axios from 'axios'
+import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import GaugeWrapper from './GauageWrapper'
+import DeviceNumeric from './DeviceNumeric'
 import { CurrentGauge, PercentageGauge, VoltageGauge } from './Gauge'
 import NumericValuesTable from './NumericValuesTable'
-import config from 'react-global-configuration'
 
-class DeviceBmv700 extends Component {
-
-    static propTypes = {
-        id: PropTypes.string.isRequired,
-    }
+class DeviceBmv700 extends DeviceNumeric {
 
     constructor (props) {
         super(props)
 
-        this.state = {
-            roundedValues: null,
-            showCurrent: false,
-        }
-    }
-
-    fetchDataFromApi = () => {
-        axios.get(config.get('apiUrl') + 'device/' + this.props.id + '/RoundedValues')
-          .then(res => {
-              this.setState({roundedValues: res.data})
-          })
-    }
-
-    componentDidMount () {
-        this.fetchDataFromApi()
-        const intervalId = setInterval(this.fetchDataFromApi, 2000)
-        this.setState({intervalId})
-    }
-
-    componentWillUnmount () {
-        clearInterval(this.state.intervalId)
+        this.state['showCurrent'] = false
     }
 
     toggleShowCurrent = () => {
