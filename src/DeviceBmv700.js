@@ -18,6 +18,7 @@ class DeviceBmv700 extends Component {
 
         this.state = {
             roundedValues: null,
+            showCurrent: false,
         }
     }
 
@@ -36,6 +37,10 @@ class DeviceBmv700 extends Component {
 
     componentWillUnmount () {
         clearInterval(this.state.intervalId)
+    }
+
+    toggleShowCurrent = () => {
+        this.setState({showCurrent: !this.state.showCurrent})
     }
 
     render () {
@@ -71,24 +76,31 @@ class DeviceBmv700 extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col key="Current" xs={6}>
-                        <GaugeWrapper name="Current"
-                                      value={Current.Value}
-                                      unit={Current.Unit}>
-                            <CurrentGauge value={Current.Value}
-                                          unit={Current.Unit}
-                            />
-                        </GaugeWrapper>
-                    </Col>
-                    <Col key="Power" xs={6}>
-                        <GaugeWrapper name="Power"
-                                      value={Power.Value}
-                                      unit={Power.Unit}>
-                            <CurrentGauge value={Power.Value / 1000}
-                                          unit={'k' + Power.Unit}
-                                          range={3}
-                            />
-                        </GaugeWrapper>
+                    <Col xs={6}>
+                        <div onClick={this.toggleShowCurrent}>
+                            {this.state.showCurrent ? <GaugeWrapper
+                                key="current"
+                                name="Current"
+                                value={Current.Value}
+                                unit={Current.Unit}>
+                                  <CurrentGauge
+                                    value={Current.Value}
+                                    unit={Current.Unit}
+                                  />
+                              </GaugeWrapper>
+                              : <GaugeWrapper
+                                key="power"
+                                name="Power"
+                                value={Power.Value}
+                                unit={Power.Unit}>
+                                  <CurrentGauge
+                                    value={Power.Value / 1000}
+                                    unit={'k' + Power.Unit}
+                                    range={3}
+                                  />
+                              </GaugeWrapper>
+                            }
+                        </div>
                     </Col>
                 </Row>
             </Col>
