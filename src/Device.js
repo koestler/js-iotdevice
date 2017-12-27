@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DeviceBmv700 from './DeviceBmv700'
 import DeviceFtpCamera from './DeviceFtpCamera'
+import DeviceMpptSolar from './DeviceSolarMppt'
 
 class Device extends Component {
 
@@ -13,6 +14,7 @@ class Device extends Component {
     specificDevices = {
         'bmv700': DeviceBmv700,
         'ftpCamera': DeviceFtpCamera,
+        'blueSolarMppt75_15': DeviceMpptSolar,
     }
 
     render () {
