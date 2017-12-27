@@ -1,15 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './index.css';
-import config from 'react-global-configuration';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import './index.css'
+import config from 'react-global-configuration'
 
 config.set({
-    //apiUrl: 'http://localhost:8000/api/v0/'
-    apiUrl: '/api/v0/'
-});
+    apiUrl: process.env.REACT_APP_API_URL,
+})
 
 ReactDOM.render(
-  <App />,
+  <App/>,
   document.getElementById('root')
-);
+)
