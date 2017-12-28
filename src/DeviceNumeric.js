@@ -1,10 +1,6 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import { Row, Col } from 'react-bootstrap'
-import GaugeWrapper from './GauageWrapper'
-import { CurrentGauge, PercentageGauge, VoltageGauge } from './Gauge'
-import NumericValuesTable from './NumericValuesTable'
 import config from 'react-global-configuration'
 
 class DeviceNumeric extends Component {
