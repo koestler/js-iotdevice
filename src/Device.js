@@ -9,6 +9,7 @@ class Device extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         model: PropTypes.string.isRequired,
+        desc: PropTypes.string,
     }
 
     specificDevices = {
@@ -21,7 +22,10 @@ class Device extends Component {
         const SpecificDevice = this.specificDevices[this.props.model]
 
         if (SpecificDevice !== undefined) {
-            return <SpecificDevice {...this.props}/>
+            return <div className="device">
+                <SpecificDevice {...this.props}/>
+                {this.props.desc && <span className="desc">{this.props.desc}</span>}
+            </div>
         }
         return <p>model: {this.props.model} is not implemented</p>
 

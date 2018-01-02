@@ -10,7 +10,6 @@ class DeviceWrapper extends Component {
         id: PropTypes.string.isRequired,
         model: PropTypes.string.isRequired,
         name: PropTypes.string,
-        desc: PropTypes.string,
     }
 
     constructor (props) {
@@ -31,9 +30,6 @@ class DeviceWrapper extends Component {
             title = <OverlayTrigger placement="top" overlay={tooltip}>
                 <span>{this.props.name}</span>
             </OverlayTrigger>
-        }
-        if (this.props.desc !== undefined) {
-            title = <span>{title}<span className="desc">{this.props.desc}</span></span>
         }
 
         const header = (
