@@ -21,7 +21,7 @@ class Device extends Component {
         const SpecificDevice = this.specificDevices[this.props.model]
 
         if (SpecificDevice !== undefined) {
-            return <SpecificDevice id={this.props.id}/>
+            return <SpecificDevice {...this.props}/>
         }
         return <p>model: {this.props.model} is not implemented</p>
 

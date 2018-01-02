@@ -58,7 +58,7 @@ class App extends Component {
               </Row>
               <Col>
                   {this.state.devices.map(
-                    device => <DeviceWrapper key={device.Name} id={device.Name} model={device.Model}/>
+                    device => <DeviceWrapper key={device.Name} id={device.Name} model={device.Model} {...device.FrontendConfig} />
                   )}
               </Col>
           </Grid>
