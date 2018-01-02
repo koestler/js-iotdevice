@@ -30,7 +30,7 @@ class DeviceFtpCamera extends Component {
     }
 
     render () {
-        const imgSrc = config.get('apiUrl') + 'device/' + this.props.id + '/Picture/Thumb?timestamp='
+        const imgSrc = config.get('apiUrl') + 'Device/' + this.props.id + '/Picture/Thumb?timestamp='
           + this.state.timestamp
         return <div className="device-ftp-camera">
             <img
@@ -56,7 +56,7 @@ class FullScreenDeviceFtpCamera extends Component {
     }
 
     render () {
-        const imgSrc = config.get('apiUrl') + 'device/' + this.props.id + '/Picture/Raw?timestamp='
+        const imgSrc = config.get('apiUrl') + 'Device/' + this.props.id + '/Picture/Raw?timestamp='
           + this.props.timestamp
 
         return <div

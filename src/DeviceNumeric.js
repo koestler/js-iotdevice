@@ -18,7 +18,7 @@ class DeviceNumeric extends Component {
     }
 
     fetchDataFromApi = () => {
-        axios.get(config.get('apiUrl') + 'device/' + this.props.id + '/RoundedValues')
+        axios.get(config.get('apiUrl') + 'Device/' + this.props.id + '/RoundedValues')
           .then(res => {
               this.setState({roundedValues: res.data})
           })

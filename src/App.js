@@ -11,7 +11,8 @@ class App extends Component {
         super(props)
 
         this.state = {
-            devices: []
+            frontendConfig: null,
+            devices: null,
         }
     }
 
@@ -32,7 +33,11 @@ class App extends Component {
     }
 
     componentDidMount () {
-        axios.get(config.get('apiUrl') + 'device/').then(res => {
+        axios.get(config.get('apiUrl') + 'FrontendConfig').then(res => {
+            const frontendConfig = res.data
+            this.setState({frontendConfig})
+        })
+        axios.get(config.get('apiUrl') + 'Devices').then(res => {
             let devices = res.data
             devices.sort(App.sortCompare)
             this.setState({devices})
@@ -40,11 +45,15 @@ class App extends Component {
     }
 
     render () {
+        if (this.state.frontendConfig === null || this.state.devices === null) {
+            return <p>loading...</p>
+        }
+
         return (
           <Grid>
               <Row>
                   <Col>
-                      <PageHeader>Giumaglio <small>ve-sensors Dashboard</small></PageHeader>
+                      <PageHeader>{this.state.frontendConfig.title} <small>{this.state.frontendConfig.subtitle}</small></PageHeader>
                   </Col>
               </Row>
               <Col>
