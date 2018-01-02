@@ -21,7 +21,7 @@ class DeviceFtpCamera extends Component {
     }
 
     componentDidMount () {
-        const timestampInterval = setInterval(() => {this.setState({timestamp: Date.now()})}, 2000)
+        const timestampInterval = setInterval(() => {this.setState({timestamp: Date.now()})}, 1000)
         this.setState({timestampInterval})
     }
 

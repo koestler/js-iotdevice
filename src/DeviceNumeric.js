@@ -26,7 +26,7 @@ class DeviceNumeric extends Component {
 
     componentDidMount () {
         this.fetchDataFromApi()
-        const intervalId = setInterval(this.fetchDataFromApi, 2000)
+        const intervalId = setInterval(this.fetchDataFromApi, 1000)
         this.setState({intervalId})
     }
 
