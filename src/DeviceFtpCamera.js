@@ -35,6 +35,7 @@ class DeviceFtpCamera extends Component {
         return <div className="device-ftp-camera">
             <img
               src={imgSrc}
+              className="thumb"
               alt={this.props.id}
               onClick={() => { this.setState({fullScreen: true})}}
             />

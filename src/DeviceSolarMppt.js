@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import GaugeWrapper from './GauageWrapper'
 import DeviceNumeric from './DeviceNumeric'
 import { CurrentGauge, VoltageGauge } from './Gauge'
@@ -29,23 +29,23 @@ class DeviceSolarMppt extends DeviceNumeric {
         const ChargerCurrent = values.ChargerCurrent
         const PanelPower = values.PanelPower
 
-        return <Grid className="device-bmv">
+        return <div className="device-numeric device-solar-mppt">
             <Row>
-                <Col key="ChargerVoltage" xs={4} sm={3}>
-                    <GaugeWrapper name="ChargerVoltage"
-                                  value={ChargerVoltage.Value}
-                                  unit={ChargerVoltage.Unit}>
-                        <VoltageGauge value={ChargerVoltage.Value}
-                                      unit={ChargerVoltage.Unit}
-                        />
-                    </GaugeWrapper>
-                </Col>
                 <Col key="PanelVoltage" xs={4} sm={3}>
                     <GaugeWrapper name="PanelVoltage"
                                   value={PanelVoltage.Value}
                                   unit={PanelVoltage.Unit}>
                         <VoltageGauge value={PanelVoltage.Value}
                                       unit={PanelVoltage.Unit}
+                        />
+                    </GaugeWrapper>
+                </Col>
+                <Col key="ChargerVoltage" xs={4} sm={3}>
+                    <GaugeWrapper name="ChargerVoltage"
+                                  value={ChargerVoltage.Value}
+                                  unit={ChargerVoltage.Unit}>
+                        <VoltageGauge value={ChargerVoltage.Value}
+                                      unit={ChargerVoltage.Unit}
                         />
                     </GaugeWrapper>
                 </Col>
@@ -76,10 +76,11 @@ class DeviceSolarMppt extends DeviceNumeric {
                     </div>
                 </Col>
             </Row>
-            <Row>
+            <Row className="content">
                 <NumericValuesTable numericValues={values}/>
+                {this.props.desc && <span className="desc">{this.props.desc}</span>}
             </Row>
-        </Grid>
+        </div>
     }
 }
 

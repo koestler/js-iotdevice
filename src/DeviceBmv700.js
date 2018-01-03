@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import GaugeWrapper from './GauageWrapper'
 import DeviceNumeric from './DeviceNumeric'
 import { CurrentGauge, PercentageGauge, VoltageGauge } from './Gauge'
@@ -29,16 +29,9 @@ class DeviceBmv700 extends DeviceNumeric {
         const Current = values.Current
         const Power = values.Power
 
-        return <Grid className="device-bmv">
+        return <div className="device-numeric device-bmv">
             <Row>
-                <Col key="StateOfCharge" xs={12} sm={5}>
-                    <GaugeWrapper name="State of Charge"
-                                  value={StateOfCharge.Value}
-                                  unit={StateOfCharge.Unit}>
-                        <PercentageGauge value={StateOfCharge.Value}/>
-                    </GaugeWrapper>
-                </Col>
-                <Col key="MainVoltage" xs={5} sm={2}>
+                <Col key="MainVoltage" xs={5} sm={3}>
                     <GaugeWrapper name="Voltage"
                                   value={MainVoltage.Value}
                                   unit={MainVoltage.Unit}>
@@ -47,7 +40,14 @@ class DeviceBmv700 extends DeviceNumeric {
                         />
                     </GaugeWrapper>
                 </Col>
-                <Col xs={6} sm={4}>
+                <Col key="StateOfCharge" xs={12} sm={5}>
+                    <GaugeWrapper name="State of Charge"
+                                  value={StateOfCharge.Value}
+                                  unit={StateOfCharge.Unit}>
+                        <PercentageGauge value={StateOfCharge.Value}/>
+                    </GaugeWrapper>
+                </Col>
+                <Col xs={6} sm={3}>
                     <div onClick={this.toggleShowCurrent}>
                         {this.state.showCurrent ? <GaugeWrapper
                             key="current"
@@ -74,10 +74,11 @@ class DeviceBmv700 extends DeviceNumeric {
                     </div>
                 </Col>
             </Row>
-            <Row>
+            <Row className="content">
                 <NumericValuesTable numericValues={values}/>
+                {this.props.desc && <span className="desc">{this.props.desc}</span>}
             </Row>
-        </Grid>
+        </div>
     }
 }
 

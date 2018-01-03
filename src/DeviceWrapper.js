@@ -42,7 +42,6 @@ class DeviceWrapper extends Component {
 
         return (
           <Panel header={header}
-                 className="device"
                  bsStyle="primary"
                  collapsible
                  expanded={this.state.open}

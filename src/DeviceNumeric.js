@@ -2,11 +2,13 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import config from 'react-global-configuration'
+import './DeviceNumeric.css'
 
 class DeviceNumeric extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
+        desc: PropTypes.string
     }
 
     constructor (props) {

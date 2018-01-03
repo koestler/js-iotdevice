@@ -1,0 +1,17 @@
+.numeric-values-table .btn {
+    margin-right: 1em;
+}
+
+.numeric-values-table div.table-responsive {
+    margin-left: -4px;
+    margin-right: -4px;
+}
+
+.numeric-values-table .table > thead > tr > th,
+.numeric-values-table .table > tbody > tr > th,
+.numeric-values-table .table > tfoot > tr > th,
+.numeric-values-table .table > thead > tr > td,
+.numeric-values-table .table > tbody > tr > td,
+.numeric-values-table .table > tfoot > tr > td {
+    padding: 4px;
+}
