@@ -4,6 +4,7 @@ import { Grid, Row, Col, PageHeader } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 import DeviceWrapper from './DeviceWrapper'
 import config from 'react-global-configuration'
+import './App.css'
 
 class App extends Component {
 
@@ -50,17 +51,21 @@ class App extends Component {
         }
 
         return (
-          <Grid>
+          <Grid className="app">
               <Row>
                   <Col>
-                      <PageHeader>{this.state.frontendConfig.title} <small>{this.state.frontendConfig.subtitle}</small></PageHeader>
+                      <PageHeader>{this.state.frontendConfig.title}
+                          <small>{this.state.frontendConfig.subtitle}</small>
+                      </PageHeader>
                   </Col>
               </Row>
-              <Col>
-                  {this.state.devices.map(
-                    device => <DeviceWrapper key={device.Name} id={device.Name} model={device.Model} {...device.FrontendConfig} />
-                  )}
-              </Col>
+              {this.state.devices.map(
+                device =>
+                  <Col xs={12} sm={6} md={4} lg={3}>
+                      <DeviceWrapper key={device.Name} id={device.Name}
+                                     model={device.Model} {...device.FrontendConfig} />
+                  </Col>
+              )}
           </Grid>
         )
     }
