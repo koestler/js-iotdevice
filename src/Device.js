@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import DeviceBmv700 from './DeviceBmv700'
 import DeviceFtpCamera from './DeviceFtpCamera'
 import DeviceMpptSolar from './DeviceSolarMppt'
+import './Device.css'
 
 class Device extends Component {
 
@@ -24,7 +25,7 @@ class Device extends Component {
         if (SpecificDevice !== undefined) {
             return <div className="device">
                 <SpecificDevice {...this.props}/>
-                {this.props.desc && <span className="desc">{this.props.desc}</span>}
+                {this.props.desc && <p className="desc">{this.props.desc}</p>}
             </div>
         }
         return <p>model: {this.props.model} is not implemented</p>

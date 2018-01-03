@@ -23,8 +23,7 @@ class NumericValuesTable extends Component {
         return (
             <div>
                 <Button onClick={() => this.setState({open: !this.state.open})}>
-                    <Glyphicon glyph={'glyphicon glyphicon-eye-' + (this.state.open ? 'close' : 'open')}/>
-                    &nbsp;Numeric Values
+                    <Glyphicon glyph={'glyphicon ' + (this.state.open ? 'glyphicon-eye-close' : 'glyphicon-list')}/>
                 </Button>
                 {this.state.open ?
                     <Table responsive>

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Device from './Device'
 import PropTypes from 'prop-types'
 import { Panel, Glyphicon, Tooltip, OverlayTrigger } from 'react-bootstrap'
-import './DeviceWrapper.css'
 
 class DeviceWrapper extends Component {
 
