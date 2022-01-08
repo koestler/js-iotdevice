@@ -1,14 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import './index.css'
-import config from 'react-global-configuration'
-
-config.set({
-    apiUrl: process.env.REACT_APP_API_URL,
-})
+import './index.scss'
+import App from './components/App'
+import { HelmetProvider } from 'react-helmet-async'
+import { AuthProvider } from './hooks/auth'
+import TranslationProvider from './i18n'
 
 ReactDOM.render(
-  <App/>,
+  <React.StrictMode>
+    <HelmetProvider>
+      <AuthProvider>
+        <TranslationProvider>
+          <App />
+        </TranslationProvider>
+      </AuthProvider>
+    </HelmetProvider>
+  </React.StrictMode>,
   document.getElementById('root')
 )

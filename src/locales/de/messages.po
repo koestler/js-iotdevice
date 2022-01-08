@@ -1,0 +1,59 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-01-02 17:27+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: de\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/components/Camera.js:88
+msgid "Cannot load camera image."
+msgstr "Bild von Kamera kann nicht geladen werden."
+
+#: src/components/App.js:21
+msgid "Cannot load configuration: {error}"
+msgstr "Kann Konfiguration nicht laden: {error}"
+
+#: src/components/App.js:29
+msgid "Loading initial configuration"
+msgstr "Lade Konfiguration"
+
+#: src/components/Header.js:27
+#: src/components/Login.js:48
+msgid "Log in"
+msgstr "Anmelden"
+
+#: src/components/Header.js:32
+msgid "Log out {0}"
+msgstr "Abmelden {0}"
+
+#: src/components/Login.js:28
+msgid "Login failed: {error}"
+msgstr "Anmelden fehlgeschlagen: {error}"
+
+#: src/components/ConfiguredApp.js:42
+msgid "No views are defined. Check your config.yaml"
+msgstr "Keine \"Views\" definiert. Siehe config.yaml"
+
+#: src/components/Login.js:40
+msgid "Password"
+msgstr "Passwort"
+
+#: src/components/Login.js:32
+msgid "User"
+msgstr "Benutzername"
+
+#: src/components/Login.js:27
+msgid "You are logged in as {0}."
+msgstr "Du bist eingeloggt als {0}."
+
+#: src/components/Login.js:26
+msgid "You have been logged in as {0}."
+msgstr "Du wurdest eingeloggt als {0}."
