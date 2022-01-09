@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useAuth } from './auth'
 
 const api = axios.create({
-  baseURL: '/api/v0/',
+  baseURL: '/api/v1/',
   headers: { Accept: 'application/json' }
 })
 
