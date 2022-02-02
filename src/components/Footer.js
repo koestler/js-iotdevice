@@ -16,10 +16,10 @@ export const SimpleFooter = ({ children, backendVersion }) => {
       <Container>
         <Content style={{ textAlign: 'center' }}>
           <p>
-            <a href='https://github.com/koestler/go-victron-to-mqtt'><strong>go-victron-to-mqtt</strong> {backendVersion && ' (' + backendVersion + ')'}</a>
+            <a href='https://github.com/koestler/go-iotsensor'><strong>go-iotsensor</strong> {backendVersion && ' (' + backendVersion + ')'}</a>
             {' '}and{' '}
-            <a href='https://github.com/koestler/js-victron-to-mqtt'><strong>js-victron-to-mqtt</strong> ({process.env.REACT_APP_VERSION})</a>.<br />
-            The source code is available under <a href='https://github.com/koestler/go-victron-to-mqtt/blob/main/LICENSE'>MIT</a> on <a href='https://github.com/koestler'><FontAwesomeIcon icon={faGithub} /></a>.
+            <a href='https://github.com/koestler/js-iotdevice'><strong>js-iotdevice</strong> ({process.env.REACT_APP_VERSION})</a>.<br />
+            The source code is available under <a href='https://github.com/koestler/go-iotsensor/blob/main/LICENSE'>MIT</a> on <a href='https://github.com/koestler'><FontAwesomeIcon icon={faGithub} /></a>.
           </p>
           {children}
         </Content>

@@ -1,14 +1,14 @@
-# js-victron-to-mqtt
-[![Docker Image CI](https://github.com/koestler/js-victron-to-mqtt/actions/workflows/docker-image.yml/badge.svg)](https://github.com/koestler/js-victron-to-mqtt/actions/workflows/docker-image.yml)
+# js-iotdevice
+[![Docker Image CI](https://github.com/koestler/js-iotdevice/actions/workflows/docker-image.yml/badge.svg)](https://github.com/koestler/js-iotdevice/actions/workflows/docker-image.yml)
 
-This is a simple frontend for [github.com/koestler/go-victron-to-mqtt](https://github.com/koestler/go-victron-to-mqtt).
-See it's [README](https://github.com/koestler/go-victron-to-mqtt#readme) for more details.
+This is a simple frontend for [github.com/koestler/go-iotsensor](https://github.com/koestler/go-iotsensor).
+See it's [README](https://github.com/koestler/go-iotsensor#readme) for more details.
 
 ## Creating a production build
-This build does contain a scratch container with only the static build in /frontend-build. It is meant to be used in the go-victron-to-mqtt production build.
+This build does contain a scratch container with only the static build in /frontend-build. It is meant to be used in the go-iotsensor production build.
 ```
-docker build -f docker/Dockerfile -t koestler/js-victron-to-mqtt .
-docker push koestler/js-victron-to-mqtt
+docker build -f docker/Dockerfile -t koestler/js-iotdevice .
+docker push koestler/js-iotdevice
 ```
 
 ## Available Scripts

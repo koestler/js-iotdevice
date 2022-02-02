@@ -1,5 +1,5 @@
 {
-  "name": "js-victron-to-mqtt",
+  "name": "js-iotdevice",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
