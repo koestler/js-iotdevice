@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from 'react'
 import axios from 'axios'
-import { imageGenerator } from './unauthApi'
+import { axiosConfig } from './unauthApi'
 
 // store current token not only in react state but also in sessionStorage
 const authStorage = window.sessionStorage
@@ -66,9 +66,7 @@ function useProvideAuth () {
 }
 
 const createApi = (token, logout) => {
-  const api = axios.create({
-    baseURL: '/api/v0/'
-  })
+  const api = axios.create(axiosConfig)
   if (token) {
     // inject authorization header if logged in
     api.defaults.headers.common.Authorization = token
@@ -82,7 +80,5 @@ const createApi = (token, logout) => {
     })
   }
 
-  return {
-    image: imageGenerator(api)
-  }
+  return api
 }

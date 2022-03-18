@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useAuth } from './auth'
 
-const api = axios.create({
+export const axiosConfig = {
   baseURL: '/api/v1/',
   headers: { Accept: 'application/json' }
-})
+}
+export const unauthApi = axios.create(axiosConfig)
 
 export const useConfig = () => {
   const [success, setSuccess] = useState(false)
@@ -15,7 +16,7 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get('config')
+        const response = await unauthApi.get('config')
         setData(response.data)
         setSuccess(true)
       } catch (error) {
@@ -37,7 +38,7 @@ export const useLogin = () => {
     setSuccess(false)
     setError(false)
     try {
-      const response = await api.post('login', { user, password })
+      const response = await unauthApi.post('login', { user, password })
       setLoginResponse(response.data)
       setSuccess(true)
     } catch (error) {
@@ -48,26 +49,44 @@ export const useLogin = () => {
   return { login, success, error }
 }
 
-export const imageGenerator = api => async (viewName, cameraName) => {
-  try {
-    const response = await api.get(
-      `images/${viewName}/${cameraName}.jpg`,
-      { responseType: 'blob' }
-    )
-    const p = new Promise(resolve => {
-      const reader = new window.FileReader()
-      reader.onload = function () {
-        resolve({
-          blob: this.result,
-          nextImageAt: response.headers['x-next-image-at'] || null
-        })
+export const useRegisters = (api, viewName, deviceName) => {
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`registers/${viewName}/${deviceName}.json`)
+        setData(response.data)
+        setSuccess(true)
+      } catch (error) {
+        setError(error.response.statusText)
       }
-      reader.readAsDataURL(response.data)
-    })
-    return p
-  } catch (error) {
-    return Promise.reject(error)
-  }
+    }
+    fetchData()
+  }, [api, viewName, deviceName])
+
+  return { registers: data, success, error }
 }
 
-export const image = imageGenerator(api)
+export const useValues = (api, viewName, deviceName) => {
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get(`values/${viewName}/${deviceName}.json`)
+        setData(response.data)
+        setSuccess(true)
+      } catch (error) {
+        setError(error.response.statusText)
+      }
+    }
+    fetchData()
+  }, [api, viewName, deviceName])
+
+  return { values: data, success, error }
+}

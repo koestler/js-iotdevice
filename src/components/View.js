@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-import Camera from './Camera'
+import Device from './Device'
 import Autoplay, { AutoplayContext } from './Autoplay'
 import { Columns, Heading, Section } from 'react-bulma-components'
 import { useAuth } from '../hooks/auth'
 import { Redirect } from 'react-router-dom'
 
 const View = (view) => {
-  const { title, name, cameras, refreshIntervalMs, autoplay } = view
+  const { title, name, devices, refreshIntervalMs, autoplay } = view
   const [play, setPlay] = useState(autoplay)
   const { isViewAllowed } = useAuth()
 
@@ -21,9 +21,9 @@ const View = (view) => {
       <Autoplay play={play} setPlay={setPlay} refreshIntervalMs={refreshIntervalMs} />
       <AutoplayContext.Provider value={{ play: play, setPlay: setPlay, refreshIntervalMs: refreshIntervalMs }}>
         <Columns>
-          {cameras.map(camera =>
-            <Columns.Column key={camera.name}>
-              <Camera viewName={name} viewIsPublic={view.isPublic} cameraName={camera.name} cameraTitle={camera.title} />
+          {devices.map(device =>
+            <Columns.Column key={device.name}>
+              <Device viewName={name} viewIsPublic={view.isPublic} deviceName={device.name} deviceTitle={device.title} />
             </Columns.Column>
           )}
         </Columns>
