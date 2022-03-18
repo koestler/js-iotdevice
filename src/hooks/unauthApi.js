@@ -49,7 +49,7 @@ export const useLogin = () => {
   return { login, success, error }
 }
 
-export const useRegisters = (api, viewName, deviceName) => {
+export const useCategories = (api, viewName, deviceName) => {
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
   const [data, setData] = useState(null)
@@ -58,7 +58,7 @@ export const useRegisters = (api, viewName, deviceName) => {
     const fetchData = async () => {
       try {
         const response = await api.get(`registers/${viewName}/${deviceName}.json`)
-        setData(response.data)
+        setData(mapRegistersToCategories(response.data))
         setSuccess(true)
       } catch (error) {
         setError(error.response.statusText)
@@ -67,8 +67,18 @@ export const useRegisters = (api, viewName, deviceName) => {
     fetchData()
   }, [api, viewName, deviceName])
 
-  return { registers: data, success, error }
+  return { categories: data, success, error }
 }
+
+const mapRegistersToCategories = registers => (
+  registers.map(r => r.category)
+    .filter((v, i, a) => a.indexOf(v) === i) // each category just once
+    .sort(a => a === 'Essential' ? -1 : 0) // reorder Essential to the front, the rest unchanged
+    .map(category => ({
+      category,
+      registers: registers.filter(r => r.category === category)
+    })) // group registers by categories
+)
 
 export const useValues = (api, viewName, deviceName) => {
   const [success, setSuccess] = useState(false)

@@ -1,7 +1,21 @@
+.device {
+  width: 100%;
+  max-width: 600px;
+}
+
 .device tr td:nth-child(2) {
   text-align: right;
 }
 
-.device tr:hover {
+.device tr td {
+  border-radius: 5px;
+}
+
+.device tr:not(.subtitle):hover {
   background-color: #eeeeff;
+}
+
+.device tr.subtitle td {
+  padding-top: 2ex;
+  padding-bottom: 1ex;
 }

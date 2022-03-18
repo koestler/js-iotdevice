@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Message, Notification, Table } from 'react-bulma-components'
 import HideableMessage from './HideableMessage'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
-import { unauthApi, useRegisters, useValues } from '../hooks/unauthApi'
+import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
 import { Trans } from '@lingui/macro'
 import './Device.scss'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   const { api } = useAuth()
-  const { registers, success: rSuccess, error: rError } = useRegisters(viewIsPublic ? unauthApi : api, viewName, deviceName)
+  const { categories, success: rSuccess, error: rError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)
   const { values, success: vSuccess, error: vError } = useValues(viewIsPublic ? unauthApi : api, viewName, deviceName)
 
   return (
@@ -16,31 +18,48 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
       <Message.Body>
         {rError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
         {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-        {rSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} registers={registers} values={values} />}
+        {rSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={values} />}
       </Message.Body>
     </HideableMessage>
   )
 }
 
-const ConfiguredDevice = ({ viewName, deviceName, registers, values }) => {
+const ConfiguredDevice = ({ viewName, deviceName, categories, values }) => {
+  // separate registers into categories
+  console.log('categories', categories)
+
   return (
     <Table className='device'>
       <tbody>
-        {registers.map((register, idx) =>
-          <Line
-            key={idx}
-            description={register.description}
-            value={values[register.name]}
-            unit={register.unit}
-          />)}
+        {categories.map(c => <Category key={c.category} category={c.category} registers={c.registers} values={values} />)}
       </tbody>
     </Table>
   )
 }
 
+const Category = ({ category, registers, values }) => {
+  const [hide, setHide] = useState(!['Essential', 'Monitor'].includes(category))
+  return (
+    <>
+      <tr className='subtitle' onClick={() => setHide(!hide)}>
+        <td colSpan={3}>{category}</td>
+        <td>
+          <FontAwesomeIcon icon={hide ? faEye : faEyeSlash} />
+        </td>
+      </tr>
+      {!hide && registers.map((register, idx) =>
+        <Line
+          key={idx}
+          description={register.description}
+          value={values[register.name]}
+          unit={register.unit}
+        />)}
+    </>
+  )
+}
+
 const Line = ({ description, value, unit }) => {
   const [hValue, hUnit] = readable(value, unit)
-
   return (
     <tr>
       <td>{description}</td>
