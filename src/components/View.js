@@ -7,8 +7,9 @@ import { useAuth } from '../hooks/auth'
 import { Redirect } from 'react-router-dom'
 
 const View = (view) => {
-  const { title, name, devices, refreshIntervalMs, autoplay } = view
+  const { title, name, devices, autoplay } = view
   const [play, setPlay] = useState(autoplay)
+  const [values, setValues] = useState(null)
   const { isViewAllowed } = useAuth()
 
   if (!isViewAllowed(view)) {
@@ -18,8 +19,8 @@ const View = (view) => {
   return (
     <Section>
       <Heading renderAs='h2'>{title}</Heading>
-      <Autoplay play={play} setPlay={setPlay} refreshIntervalMs={refreshIntervalMs} />
-      <AutoplayContext.Provider value={{ play: play, setPlay: setPlay, refreshIntervalMs: refreshIntervalMs }}>
+      <Autoplay viewName={name} play={play} setPlay={setPlay} values={values} setValues={setValues} />
+      <AutoplayContext.Provider value={{ play, values }}>
         <Columns>
           {devices.map(device =>
             <Columns.Column key={device.name}>
