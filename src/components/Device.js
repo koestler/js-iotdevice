@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Message, Notification, Table } from 'react-bulma-components'
 import HideableMessage from './HideableMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,19 +7,24 @@ import { useAuth } from '../hooks/auth'
 import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
 import { Trans } from '@lingui/macro'
 import './Device.scss'
+import { AutoplayContext } from './Autoplay'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
-  const { values: autoPlayValues } = useContext(AutoplayContext)
+  let { values: autoPlayValues } = useContext(AutoplayContext)
   const { api } = useAuth()
-  const { categories, success: rSuccess, error: rError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)
-  const { values, success: vSuccess, error: vError } = useValues(viewIsPublic ? unauthApi : api, viewName, deviceName)
+  const { categories, success: cSuccess, error: cError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)
+  const { values: staticValues, success: vSuccess, error: vError } = useValues(viewIsPublic ? unauthApi : api, viewName, deviceName)
+
+  if (autoPlayValues) {
+    autoPlayValues = autoPlayValues[deviceName]
+  }
 
   return (
     <HideableMessage header={<p>{deviceTitle}</p>}>
       <Message.Body>
-        {rError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
+        {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
         {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-        {rSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={values} />}
+        {cSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={autoPlayValues ?? staticValues} />}
       </Message.Body>
     </HideableMessage>
   )

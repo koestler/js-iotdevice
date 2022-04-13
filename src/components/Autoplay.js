@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
+import merge from 'lodash.merge'
 
 export const AutoplayContext = React.createContext({ play: false, values: null })
 
@@ -24,8 +25,9 @@ const Websocket = ({ viewName, setConnectionState, values, setValues }) => {
 
   // update values
   useEffect(() => {
-    console.log('update values', lastJsonMessage)
-    setValues(lastJsonMessage)
+    if (lastJsonMessage) {
+      setValues(merge({}, values, lastJsonMessage))
+    }
     return () => setValues(null)
   }, [lastJsonMessage, setValues])
 
@@ -34,7 +36,7 @@ const Websocket = ({ viewName, setConnectionState, values, setValues }) => {
     if (readyState === ReadyState.OPEN && isLoggedIn()) {
       sendJsonMessage({ authToken: getToken() })
     }
-  }, [readyState])
+  }, [readyState, isLoggedIn, getToken, sendJsonMessage])
 
   // update connectionState
   useEffect(() => {
@@ -83,7 +85,6 @@ const AutoplayBox = ({ play, setPlay, connectionState }) => {
   if (play) {
     isPlaying = (
       <Block>
-        <p>values are live</p>
         <Progress />
       </Block>
     )
