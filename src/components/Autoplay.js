@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
-import merge from 'lodash.merge'
 
 export const AutoplayContext = React.createContext({ play: false, values: null })
 
@@ -25,7 +24,17 @@ const Websocket = ({ viewName, setConnectionState, setValues }) => {
   // update values
   useEffect(() => {
     if (lastJsonMessage) {
-      setValues(values => merge({}, values, lastJsonMessage))
+      Object.entries(lastJsonMessage).forEach(([newDeviceName, newDeviceValues]) => {
+        setValues(values => {
+          return {
+            ...values,
+            [newDeviceName]: {
+              ...((values && newDeviceName in values) ? values[newDeviceName] : {}),
+              ...newDeviceValues
+            }
+          }
+        })
+      })
     }
   }, [lastJsonMessage, setValues])
 
