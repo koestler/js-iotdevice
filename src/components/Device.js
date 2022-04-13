@@ -8,23 +8,26 @@ import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
 import { Trans } from '@lingui/macro'
 import './Device.scss'
 import { AutoplayContext } from './Autoplay'
+import Led from './Led'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
-  let { values: autoPlayValues } = useContext(AutoplayContext)
+  const { values: autoPlayValues } = useContext(AutoplayContext)
   const { api } = useAuth()
   const { categories, success: cSuccess, error: cError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)
   const { values: staticValues, success: vSuccess, error: vError } = useValues(viewIsPublic ? unauthApi : api, viewName, deviceName)
+  let values = staticValues
 
   if (autoPlayValues) {
-    autoPlayValues = autoPlayValues[deviceName]
+    values = autoPlayValues[deviceName] ?? {}
   }
 
   return (
-    <HideableMessage header={<p>{deviceTitle}</p>}>
+    <HideableMessage header={<><p>{deviceTitle}</p></>}>
       <Message.Body>
+        <Led blinkOnChange={values} />
         {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
         {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-        {cSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={autoPlayValues ?? staticValues} />}
+        {cSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={values} />}
       </Message.Body>
     </HideableMessage>
   )

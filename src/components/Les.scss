@@ -1,0 +1,22 @@
+.led {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #A00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  animation: blinkLed 0.3s;
+}
+
+@keyframes blinkLed {
+  from {
+    background-color: #A00;
+}
+  50% {
+    background-color: #F22;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  }
+  to {
+    background-color: #A00;
+  }
+}

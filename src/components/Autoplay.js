@@ -1,35 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { Block, Button, Progress, Box } from 'react-bulma-components'
+import { Block, Button, Box } from 'react-bulma-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
-import merge from 'lodash.merge'
+
 
 export const AutoplayContext = React.createContext({ play: false, values: null })
 
-const Autoplay = ({ viewName, play, setPlay, values, setValues }) => {
+const Autoplay = ({ viewName, play, setPlay, updateValues }) => {
   const [connectionState, setConnectionState] = useState('never started')
-
   return (
     <>
       <AutoplayBox play={play} setPlay={setPlay} connectionState={connectionState} />
-      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} values={values} setValues={setValues} />}
+      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} updateValues={updateValues} />}
     </>
   )
 }
 
-const Websocket = ({ viewName, setConnectionState, values, setValues }) => {
+const Websocket = ({ viewName, setConnectionState, updateValues }) => {
   const { isLoggedIn, getToken } = useAuth()
   const { lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(websocketUrl(`values/${viewName}/ws`))
 
   // update values
   useEffect(() => {
     if (lastJsonMessage) {
-      setValues(merge({}, values, lastJsonMessage))
+      updateValues(lastJsonMessage)
     }
-    return () => setValues(null)
-  }, [lastJsonMessage, setValues])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastJsonMessage])
 
   // send authentication message after connect when logged in
   useEffect(() => {
@@ -81,19 +80,9 @@ const AutoplayBox = ({ play, setPlay, connectionState }) => {
     </Button>
   )
 
-  let isPlaying = null
-  if (play) {
-    isPlaying = (
-      <Block>
-        <Progress />
-      </Block>
-    )
-  }
-
   return (
     <Box>
       {playButton}
-      {isPlaying}
       <Block>{connectionState}</Block>
     </Box>
   )
