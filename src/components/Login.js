@@ -27,27 +27,29 @@ const Login = () => {
         {!success && isLoggedIn() && <Notification color='info'><Trans>You are logged in as {getUser()}.</Trans></Notification>}
         {error && !isLoggedIn() && <Notification color='danger'><Trans>Login failed: {error}</Trans></Notification>}
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Field>
-            <Form.Label><Trans>User</Trans></Form.Label>
-            <input
-              type='text'
-              className={'input is-primary' + (errors.user ? ' is-danger' : '')}
-              {...register('user', { required: true, minLength: 2 })}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Form.Label><Trans>Password</Trans></Form.Label>
-            <input
-              type='password'
-              className={'input is-primary' + (errors.password ? ' is-danger' : '')}
-              {...register('password', { required: true, minLength: 4 })}
-            />
-          </Form.Field>
-          <Button.Group align='right'>
-            <Button color='primary'><Trans>Log in</Trans></Button>
-          </Button.Group>
-        </form>
+        {!isLoggedIn() && (
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Form.Field>
+              <Form.Label><Trans>User</Trans></Form.Label>
+              <input
+                type='text'
+                className={'input is-primary' + (errors.user ? ' is-danger' : '')}
+                {...register('user', { required: true, minLength: 2 })}
+              />
+            </Form.Field>
+            <Form.Field>
+              <Form.Label><Trans>Password</Trans></Form.Label>
+              <input
+                type='password'
+                className={'input is-primary' + (errors.password ? ' is-danger' : '')}
+                {...register('password', { required: true, minLength: 4 })}
+              />
+            </Form.Field>
+            <Button.Group align='right'>
+              <Button color='primary'><Trans>Log in</Trans></Button>
+            </Button.Group>
+          </form>
+        )}
       </Box>
     </Section>
   )
