@@ -4,31 +4,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
-
+import merge from 'lodash.merge'
 
 export const AutoplayContext = React.createContext({ play: false, values: null })
 
-const Autoplay = ({ viewName, play, setPlay, updateValues }) => {
+const Autoplay = ({ viewName, play, setPlay, setValues }) => {
   const [connectionState, setConnectionState] = useState('never started')
   return (
     <>
       <AutoplayBox play={play} setPlay={setPlay} connectionState={connectionState} />
-      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} updateValues={updateValues} />}
+      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} setValues={setValues} />}
     </>
   )
 }
 
-const Websocket = ({ viewName, setConnectionState, updateValues }) => {
+const Websocket = ({ viewName, setConnectionState, setValues }) => {
   const { isLoggedIn, getToken } = useAuth()
   const { lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(websocketUrl(`values/${viewName}/ws`))
 
   // update values
   useEffect(() => {
     if (lastJsonMessage) {
-      updateValues(lastJsonMessage)
+      setValues(values => merge({}, values, lastJsonMessage))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastJsonMessage])
+  }, [lastJsonMessage, setValues])
 
   // send authentication message after connect when logged in
   useEffect(() => {
