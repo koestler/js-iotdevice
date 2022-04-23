@@ -27,13 +27,13 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
         <Led blinkOnChange={values} />
         {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
         {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-        {cSuccess && vSuccess && <ConfiguredDevice viewName={viewName} deviceName={deviceName} categories={categories} values={values} />}
+        {cSuccess && vSuccess && <ConfiguredDevice categories={categories} values={values} />}
       </Message.Body>
     </HideableMessage>
   )
 }
 
-const ConfiguredDevice = ({ viewName, deviceName, categories, values }) => {
+const ConfiguredDevice = ({categories, values }) => {
   return (
     <Table className='device'>
       <tbody>
@@ -44,7 +44,7 @@ const ConfiguredDevice = ({ viewName, deviceName, categories, values }) => {
 }
 
 const Category = ({ category, registers, values }) => {
-  const [hide, setHide] = useState(!['Essential', 'Monitor'].includes(category))
+  const [hide, setHide] = useState(['Historic'].includes(category))
   return (
     <>
       <tr className='subtitle' onClick={() => setHide(!hide)}>
