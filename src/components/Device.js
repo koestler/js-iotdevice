@@ -44,7 +44,7 @@ const ConfiguredDevice = ({categories, values }) => {
 }
 
 const Category = ({ category, registers, values }) => {
-  const [hide, setHide] = useState(['Historic'].includes(category))
+  const [hide, setHide] = useState(['Historic', 'Settings'].includes(category))
   return (
     <>
       <tr className='subtitle' onClick={() => setHide(!hide)}>
