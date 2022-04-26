@@ -2,8 +2,8 @@ import React, { useState, useContext, createContext } from 'react'
 import axios from 'axios'
 import { axiosConfig } from './unauthApi'
 
-// store current token not only in react state but also in sessionStorage
-const authStorage = window.sessionStorage
+// store current token not only in react state but also in localStorage
+const authStorage = window.localStorage
 const storageKey = 'authenticatedUser'
 const storeLoginResponse = loginResponse => {
   authStorage.setItem(storageKey, JSON.stringify(loginResponse))
