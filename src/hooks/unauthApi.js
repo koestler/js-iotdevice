@@ -42,7 +42,7 @@ export const useLogin = () => {
       setLoginResponse(response.data)
       setSuccess(true)
     } catch (error) {
-      setError(error.response.statusText)
+      setError(true)
     }
   }
 
