@@ -10,11 +10,6 @@ const View = (view) => {
   const { title, name, devices, autoplay } = view
   const [play, setPlay] = useState(autoplay)
   const [values, setValues] = useState(null)
-  const { isViewAllowed } = useAuth()
-
-  if (!isViewAllowed(view)) {
-    return <Redirect to='/login' />
-  }
 
   return (
     <Section>

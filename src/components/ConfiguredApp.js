@@ -11,6 +11,8 @@ import { Trans } from '@lingui/macro'
 const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
   const { isViewVisible } = useAuth()
   const myViews = views.filter(isViewVisible)
+  const { isViewAllowed } = useAuth()
+
   return (
     <BrowserRouter>
       <Helmet>
@@ -20,7 +22,7 @@ const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
       <Switch>
         {myViews.map(view =>
           <Route key={view.name} path={`/${view.name}`}>
-            <View {...view} />
+            {isViewAllowed(view) ? <View {...view} /> : <Login />}
           </Route>
         )}
         <Route path='/login'>
