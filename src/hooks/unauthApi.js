@@ -29,24 +29,20 @@ export const useConfig = () => {
   return { config: data, success, error }
 }
 
-export const useLogin = () => {
+export const useLogin = ({ onSucces, onError }) => {
   const { setLoginResponse } = useAuth()
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState(false)
 
   const login = async (user, password) => {
-    setSuccess(false)
-    setError(false)
     try {
       const response = await unauthApi.post('login', { user, password })
       setLoginResponse(response.data)
-      setSuccess(true)
+      onSucces(user)
     } catch (error) {
-      setError(true)
+      onError()
     }
   }
 
-  return { login, success, error }
+  return { login }
 }
 
 export const useCategories = (api, viewName, deviceName) => {

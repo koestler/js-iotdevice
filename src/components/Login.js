@@ -1,32 +1,29 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, Box, Form, Section, Heading, Notification } from 'react-bulma-components'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/auth'
 import { useLogin } from '../hooks/unauthApi'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
+import { toast } from 'bulma-toast'
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const { logout, isLoggedIn, getUser } = useAuth()
-  const { login, success, error } = useLogin()
+  const { login } = useLogin({
+    onSucces: user => toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
+    onError: () => toast({ message: t`Login failed`, type: 'is-danger' })
+  })
 
   const onSubmit = async data => {
     logout()
     login(data.user, data.password)
   }
 
-  useEffect(() => {
-    if (success) reset()
-  }, [success, reset])
-
   return (
     <Section>
       <Heading renderAs='h2'>Log in</Heading>
       <Box style={{ maxWidth: 600, margin: 'auto' }}>
-        {success && isLoggedIn() && <Notification color='success'><Trans>You have been logged in as {getUser()}.</Trans></Notification>}
-        {!success && isLoggedIn() && <Notification color='info'><Trans>You are logged in as {getUser()}.</Trans></Notification>}
-        {error && !isLoggedIn() && <Notification color='danger'><Trans>Login failed: {error}</Trans></Notification>}
-
+        {isLoggedIn() && <Notification color='info'><Trans>You are logged in as {getUser()}.</Trans></Notification>}
         {!isLoggedIn() && (
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Field>

@@ -7,6 +7,7 @@ import Footer from './Footer'
 import { Heading, Notification, Section } from 'react-bulma-components'
 import { useAuth } from '../hooks/auth'
 import { Trans } from '@lingui/macro'
+import * as bulmaToast from 'bulma-toast'
 
 const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
   const { isViewVisible } = useAuth()
@@ -50,5 +51,12 @@ const DefaultRoute = ({ views }) => {
   const defaultView = views[0]
   return <Redirect to={`/${defaultView.name}`} />
 }
+
+bulmaToast.setDefaults({
+  duration: 2000,
+  position: 'top-center',
+  opacity: 0.8,
+  closeOnClick: true
+})
 
 export default ConfiguredApp

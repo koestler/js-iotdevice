@@ -33,7 +33,7 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   )
 }
 
-const ConfiguredDevice = ({categories, values }) => {
+const ConfiguredDevice = ({ categories, values }) => {
   return (
     <Table className='device'>
       <tbody>

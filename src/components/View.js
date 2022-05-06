@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import Device from './Device'
 import Autoplay, { AutoplayContext } from './Autoplay'
 import { Columns, Heading, Section } from 'react-bulma-components'
-import { useAuth } from '../hooks/auth'
-import { Redirect } from 'react-router-dom'
 
 const View = (view) => {
   const { title, name, devices, autoplay } = view

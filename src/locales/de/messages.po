@@ -13,20 +13,24 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Camera.js:88
-msgid "Cannot load camera image."
-msgstr "Bild von Kamera kann nicht geladen werden."
-
-#: src/components/App.js:21
+#: src/components/App.js:23
 msgid "Cannot load configuration: {error}"
 msgstr "Kann Konfiguration nicht laden: {error}"
 
-#: src/components/App.js:29
+#: src/components/Device.js:28
+msgid "Cannot load device registers."
+msgstr "Registerliste kann nicht geladen weden."
+
+#: src/components/Device.js:29
+msgid "Cannot load device values."
+msgstr "Messwerte können nicht geladen werden."
+
+#: src/components/App.js:34
 msgid "Loading initial configuration"
 msgstr "Lade Konfiguration"
 
 #: src/components/Header.js:27
-#: src/components/Login.js:48
+#: src/components/Login.js:46
 msgid "Log in"
 msgstr "Anmelden"
 
@@ -34,26 +38,26 @@ msgstr "Anmelden"
 msgid "Log out {0}"
 msgstr "Abmelden {0}"
 
-#: src/components/Login.js:28
-msgid "Login failed: {error}"
-msgstr "Anmelden fehlgeschlagen: {error}"
+#: src/components/Login.js:14
+msgid "Login failed"
+msgstr "Anmeldung fehlgeschlagen"
 
-#: src/components/ConfiguredApp.js:42
+#: src/components/ConfiguredApp.js:45
 msgid "No views are defined. Check your config.yaml"
 msgstr "Keine \"Views\" definiert. Siehe config.yaml"
 
-#: src/components/Login.js:40
+#: src/components/Login.js:38
 msgid "Password"
 msgstr "Passwort"
 
-#: src/components/Login.js:32
+#: src/components/Login.js:30
 msgid "User"
 msgstr "Benutzername"
 
-#: src/components/Login.js:27
+#: src/components/Login.js:26
 msgid "You are logged in as {0}."
 msgstr "Du bist eingeloggt als {0}."
 
-#: src/components/Login.js:26
-msgid "You have been logged in as {0}."
-msgstr "Du wurdest eingeloggt als {0}."
+#: src/components/Login.js:13
+msgid "You have been logged in as {user}."
+msgstr "Du wurdest eingeloggt als {user}."
