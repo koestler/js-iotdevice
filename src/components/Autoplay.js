@@ -19,7 +19,7 @@ const Autoplay = ({ viewName, play, setPlay, setValues }) => {
 
   return (
     <>
-      <AutoplayBox play={play} setPlay={setPlay} connectionState={connectionState} />
+      <AutoplayBox play={play} setPlay={setPlay} />
       {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} setValues={setValues} />}
     </>
   )
@@ -89,7 +89,7 @@ const readyStateToString = (readyState) => {
   return connectionStatus[readyState]
 }
 
-const AutoplayBox = ({ play, setPlay, connectionState }) => {
+const AutoplayBox = ({ play, setPlay }) => {
   return (
     <Button.Group align='right'>
       <Button onClick={() => setPlay(!play)}>
