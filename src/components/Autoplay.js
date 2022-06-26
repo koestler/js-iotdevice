@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Block, Button, Box } from 'react-bulma-components'
+import { Button } from 'react-bulma-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
@@ -9,6 +9,14 @@ export const AutoplayContext = React.createContext({ play: false, values: null }
 
 const Autoplay = ({ viewName, play, setPlay, setValues }) => {
   const [connectionState, setConnectionState] = useState('never started')
+
+  // set play=false when ws connection was closed
+  useEffect(() => {
+    if (connectionState === 'Closed') {
+      setPlay(false)
+    }
+  }, [connectionState, setPlay])
+
   return (
     <>
       <AutoplayBox play={play} setPlay={setPlay} connectionState={connectionState} />
@@ -49,7 +57,7 @@ const Websocket = ({ viewName, setConnectionState, setValues }) => {
   useEffect(() => {
     setConnectionState(readyStateToString(readyState))
     return () => {
-      setConnectionState('closed')
+      setConnectionState(ReadyState.CLOSED)
     }
   }, [readyState, setConnectionState])
 
@@ -82,17 +90,12 @@ const readyStateToString = (readyState) => {
 }
 
 const AutoplayBox = ({ play, setPlay, connectionState }) => {
-  const playButton = (
-    <Button onClick={() => setPlay(!play)}>
-      <FontAwesomeIcon icon={play ? faStop : faPlay} />
-    </Button>
-  )
-
   return (
-    <Box>
-      {playButton}
-      <Block>{connectionState}</Block>
-    </Box>
+    <Button.Group align='right'>
+      <Button onClick={() => setPlay(!play)}>
+        <FontAwesomeIcon icon={play ? faStop : faPlay} />
+      </Button>
+    </Button.Group>
   )
 }
 
