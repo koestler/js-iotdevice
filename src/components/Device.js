@@ -102,8 +102,11 @@ const readable = (value, unit) => {
   if (unit === 'h' && value > 24) {
     return readable(value / 24, 'd')
   }
-  if (['W', 'A', 'V'].includes(unit) && value >= 1000) {
+  if (['W', 'A', 'V', 'Wh'].includes(unit) && value >= 1000) {
     return [value / 1000, 'k' + unit]
+  }
+  if (['kW', 'kA', 'kV', 'kWh'].includes(unit) && value >= 1000) {
+    return [value / 1000, 'M' + unit.substring(1)]
   }
   if (unit === 'K') { // kelvin
     return [value - 273.15, '°C']
