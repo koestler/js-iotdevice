@@ -57,7 +57,7 @@ export const useCategories = (api, viewName, deviceName) => {
         setData(mapRegistersToCategories(response.data))
         setSuccess(true)
       } catch (error) {
-          setError(true)
+        setError(true)
       }
     }
     fetchData()

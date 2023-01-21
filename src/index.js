@@ -1,5 +1,5 @@
 import React from 'react'
-import { createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client'
 import './index.scss'
 import App from './components/App'
 import { HelmetProvider } from 'react-helmet-async'
@@ -17,5 +17,5 @@ root.render(
         </TranslationProvider>
       </AuthProvider>
     </HelmetProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
