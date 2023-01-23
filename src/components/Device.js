@@ -56,40 +56,56 @@ const Category = ({ category, registers, values }) => {
       {!hide && registers.map((register, idx) =>
         <Line
           key={idx}
-          description={register.description}
+          register={register}
           value={values[register.name]}
-          unit={register.unit}
         />)}
     </>
   )
 }
 
-const Line = ({ description, value, unit }) => {
-  const [hValue, hUnit] = readable(value, unit)
+const Line = ({ register, value }) => {
   return (
     <tr>
-      <td>{description}</td>
-      <Value value={hValue} />
-      <td>{hUnit}</td>
+      <td>{register.description}</td>
+      <Value register={register} value={value} />
     </tr>
   )
 }
 
-const Value = ({ value }) => {
-  if (typeof value === 'number') {
-    value = Math.round(value * 100) / 100
-    const strs = value.toString().split('.')
-    const decimal = strs.length === 2
-    return (
-      <>
-        <td>{strs[0]}</td>
-        {decimal && <td>.{strs[1]}</td>}
-        {decimal || <td />}
-      </>
-    )
+const Value = ({ register, value }) => {
+  if (register.type === 'number') {
+    return <NumberValue value={value} unit={register.unit} />
   }
 
+  if (register.type === 'enum') {
+    return <EnumValue value={value} enumDefinition={register.enum} />
+  }
+
+  return <TextValue value={value} />
+}
+
+const TextValue = ({ value }) => {
   return <td colSpan={3}>{value}</td>
+}
+
+const NumberValue = ({ value, unit }) => {
+  let [hValue, hUnit] = readable(value, unit)
+
+  hValue = Math.round(hValue * 100) / 100
+  const strs = hValue.toString().split('.')
+  const decimal = strs.length === 2
+  return (
+    <>
+      <td>{strs[0]}</td>
+      {decimal && <td>.{strs[1]}</td>}
+      {decimal || <td />}
+      <td>{hUnit}</td>
+    </>
+  )
+}
+
+const EnumValue = ({ value, enumDefinition }) => {
+  return <TextValue value={enumDefinition[value] ?? ''} />
 }
 
 const readable = (value, unit) => {
