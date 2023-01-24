@@ -23,7 +23,7 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
 
   let changeValue
   if (isLoggedIn()) {
-    changeValue = (e) => api.patch(`/values/${viewName}/${deviceName}`, { [e.target.name]: e.target.value })
+    changeValue = (e) => api.patch(`/values/${viewName}/${deviceName}`, { [e.target.name]: parseInt(e.target.value) })
   }
 
   return (
