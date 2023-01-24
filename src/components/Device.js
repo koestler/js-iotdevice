@@ -126,7 +126,7 @@ const EnumControl = ({ registerName, value, enumDefinition, changeValue }) => {
             key={idx}
             name={registerName}
             value={idx}
-            checked={value === idx}
+            checked={value === parseInt(idx)}
             onChange={changeValue}
           >
             {enumDefinition[idx] ?? ''}
