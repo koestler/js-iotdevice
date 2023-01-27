@@ -12,7 +12,7 @@ import Led from './Led'
 import { toast } from 'bulma-toast'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
-  const { values: autoPlayValues } = useContext(AutoplayContext)
+  const { values: autoPlayValues, play } = useContext(AutoplayContext)
   const { api, isLoggedIn } = useAuth()
   const { categories, success: cSuccess, error: cError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)
   const { values: staticValues, success: vSuccess, error: vError } = useValues(viewIsPublic ? unauthApi : api, viewName, deviceName)
@@ -27,8 +27,15 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
     changeValue = (e) => api.patch(
       `/views/${viewName}/devices/${deviceName}/values`,
       { [e.target.name]: parseInt(e.target.value) }
-    ).then(() => toast({ message: t`Output successfully set.`, type: 'is-success' }))
-      .catch(() => toast({ message: t`Cannot change output.`, type: 'is-danger' }))
+    ).then(() => {
+      if (play) {
+        toast({ message: t`Output successfully set.`, type: 'is-success' })
+      } else {
+        toast({ message: t`Output successfully set. Reloading...`, type: 'is-success' })
+        setTimeout(() => window.location.reload(), 1000)
+      }
+    }
+    ).catch(() => toast({ message: t`Cannot change output.`, type: 'is-danger' }))
   }
 
   return (
