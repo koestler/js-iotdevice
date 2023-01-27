@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useAuth } from './auth'
 
 export const axiosConfig = {
-  baseURL: '/api/v1/',
+  baseURL: '/api/v2/',
   headers: { Accept: 'application/json' }
 }
 export const unauthApi = axios.create(axiosConfig)
@@ -16,7 +16,7 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await unauthApi.get('config')
+        const response = await unauthApi.get('frontend/config')
         setData(response.data)
         setSuccess(true)
       } catch (error) {
@@ -34,7 +34,7 @@ export const useLogin = ({ onSucces, onError }) => {
 
   const login = async (user, password) => {
     try {
-      const response = await unauthApi.post('login', { user, password })
+      const response = await unauthApi.post('auth/login', { user, password })
       setLoginResponse(response.data)
       onSucces(user)
     } catch (error) {
@@ -53,7 +53,7 @@ export const useCategories = (api, viewName, deviceName) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`registers/${viewName}/${deviceName}.json`)
+        const response = await api.get(`views/${viewName}/devices/${deviceName}/registers`)
         setData(mapRegistersToCategories(response.data))
         setSuccess(true)
       } catch (error) {
@@ -84,7 +84,7 @@ export const useValues = (api, viewName, deviceName) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await api.get(`values/${viewName}/${deviceName}.json`)
+        const response = await api.get(`views/${viewName}/devices/${deviceName}/values`)
         setData(response.data)
         setSuccess(true)
       } catch (error) {
