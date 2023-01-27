@@ -13,15 +13,19 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/components/Device.js:31
+msgid "Cannot change output."
+msgstr "Konnte Ausgang nicht setzen."
+
 #: src/components/App.js:23
 msgid "Cannot load configuration: {error}"
 msgstr "Kann Konfiguration nicht laden: {error}"
 
-#: src/components/Device.js:28
+#: src/components/Device.js:38
 msgid "Cannot load device registers."
 msgstr "Registerliste kann nicht geladen weden."
 
-#: src/components/Device.js:29
+#: src/components/Device.js:39
 msgid "Cannot load device values."
 msgstr "Messwerte können nicht geladen werden."
 
@@ -45,6 +49,10 @@ msgstr "Anmeldung fehlgeschlagen"
 #: src/components/ConfiguredApp.js:45
 msgid "No views are defined. Check your config.yaml"
 msgstr "Keine \"Views\" definiert. Siehe config.yaml"
+
+#: src/components/Device.js:30
+msgid "Output successfully set."
+msgstr "Ausgang gesetzt."
 
 #: src/components/Login.js:38
 msgid "Password"

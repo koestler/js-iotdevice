@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
 import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
-import { Trans } from '@lingui/macro'
+import { Trans, t } from '@lingui/macro'
 import './Device.scss'
 import { AutoplayContext } from './Autoplay'
 import Led from './Led'
+import { toast } from 'bulma-toast'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   const { values: autoPlayValues } = useContext(AutoplayContext)
@@ -23,7 +24,11 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
 
   let changeValue
   if (isLoggedIn()) {
-    changeValue = (e) => api.patch(`/values/${viewName}/${deviceName}`, { [e.target.name]: parseInt(e.target.value) })
+    changeValue = (e) => api.patch(
+      `/values/${viewName}/${deviceName}`,
+      { [e.target.name]: parseInt(e.target.value) }
+    ).onSucces(() => toast({ message: t`Output successfully set.`, type: 'is-success' }))
+      .onError(() => toast({ message: t`Cannot change output.`, type: 'is-error' }))
   }
 
   return (
