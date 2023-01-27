@@ -25,10 +25,10 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   let changeValue
   if (isLoggedIn()) {
     changeValue = (e) => api.patch(
-      `/values/${viewName}/${deviceName}`,
+      `/views/${viewName}/devices/${deviceName}/values`,
       { [e.target.name]: parseInt(e.target.value) }
-    ).onSucces(() => toast({ message: t`Output successfully set.`, type: 'is-success' }))
-      .onError(() => toast({ message: t`Cannot change output.`, type: 'is-error' }))
+    ).then(() => toast({ message: t`Output successfully set.`, type: 'is-success' }))
+      .catch(() => toast({ message: t`Cannot change output.`, type: 'is-danger' }))
   }
 
   return (
