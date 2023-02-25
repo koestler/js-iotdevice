@@ -27,12 +27,12 @@ const Autoplay = ({ viewName, play, setPlay, setValues }) => {
 
 const Websocket = ({ viewName, setConnectionState, setValues }) => {
   const { isLoggedIn, getToken } = useAuth()
-  const { lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(websocketUrl(`values/${viewName}/ws`))
+  const { lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(websocketUrl(`views/${viewName}/ws`))
 
   // update values
   useEffect(() => {
-    if (lastJsonMessage) {
-      Object.entries(lastJsonMessage).forEach(([newDeviceName, newDeviceValues]) => {
+    if (lastJsonMessage && lastJsonMessage.values) {
+      Object.entries(lastJsonMessage.values).forEach(([newDeviceName, newDeviceValues]) => {
         setValues(values => {
           return {
             ...values,
@@ -49,7 +49,7 @@ const Websocket = ({ viewName, setConnectionState, setValues }) => {
   // send authentication message after connect when logged in
   useEffect(() => {
     if (readyState === ReadyState.OPEN && isLoggedIn()) {
-      sendJsonMessage({ authToken: getToken() })
+      sendJsonMessage({ type: 'auth', authToken: getToken() })
     }
   }, [readyState, isLoggedIn, getToken, sendJsonMessage])
 
@@ -73,7 +73,7 @@ const websocketUrl = (endpoint) => {
     uri = 'ws:'
   }
   uri += '//' + loc.host
-  uri += '/api/v1/'
+  uri += '/api/v2/'
   uri += endpoint
   return uri
 }

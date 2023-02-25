@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Device.js:31
+#: src/components/Device.js:38
 msgid "Cannot change output."
 msgstr "Cannot change output."
 
@@ -21,11 +21,11 @@ msgstr "Cannot change output."
 msgid "Cannot load configuration: {error}"
 msgstr "Cannot load configuration: {error}"
 
-#: src/components/Device.js:38
+#: src/components/Device.js:45
 msgid "Cannot load device registers."
 msgstr "Cannot load device registers."
 
-#: src/components/Device.js:39
+#: src/components/Device.js:46
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
 
@@ -50,9 +50,13 @@ msgstr "Login failed"
 msgid "No views are defined. Check your config.yaml"
 msgstr "No views are defined. Check your config.yaml"
 
-#: src/components/Device.js:30
+#: src/components/Device.js:32
 msgid "Output successfully set."
 msgstr "Output successfully set."
+
+#: src/components/Device.js:34
+msgid "Output successfully set. Reloading..."
+msgstr "Output successfully set. Reloading..."
 
 #: src/components/Login.js:38
 msgid "Password"
