@@ -16,7 +16,7 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await unauthApi.get('frontend/config')
+        const response = await unauthApi.get('configuration/frontend')
         setData(response.data)
         setSuccess(true)
       } catch (error) {
