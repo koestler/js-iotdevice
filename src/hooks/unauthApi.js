@@ -16,7 +16,7 @@ export const useConfig = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await unauthApi.get('configuration/frontend')
+        const response = await unauthApi.get('config/frontend')
         setData(response.data)
         setSuccess(true)
       } catch (error) {
@@ -34,7 +34,7 @@ export const useLogin = ({ onSucces, onError }) => {
 
   const login = async (user, password) => {
     try {
-      const response = await unauthApi.post('authentication/login', { user, password })
+      const response = await unauthApi.post('auth/login', { user, password })
       setLoginResponse(response.data)
       onSucces(user)
     } catch (error) {
