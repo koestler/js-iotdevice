@@ -34,7 +34,7 @@ export const useLogin = ({ onSucces, onError }) => {
 
   const login = async (user, password) => {
     try {
-      const response = await unauthApi.post('auth/login', { user, password })
+      const response = await unauthApi.post('authentication/login', { user, password })
       setLoginResponse(response.data)
       onSucces(user)
     } catch (error) {
