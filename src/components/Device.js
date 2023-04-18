@@ -52,11 +52,13 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
 
 const ConfiguredDevice = ({ categories, values, changeValue }) => {
   return (
-    <Table className='device'>
-      <tbody>
-        {categories.map(c => <Category key={c.category} category={c.category} registers={c.registers} values={values} changeValue={changeValue} />)}
-      </tbody>
-    </Table>
+    <form>
+      <Table className='device'>
+        <tbody>
+          {categories.map(c => <Category key={c.category} category={c.category} registers={c.registers} values={values} changeValue={changeValue} />)}
+        </tbody>
+      </Table>
+    </form>
   )
 }
 
