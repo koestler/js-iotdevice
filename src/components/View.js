@@ -23,7 +23,7 @@ const View = (view) => {
       <AutoplayContext.Provider value={{ play, values }}>
         <Columns>
           {devices.map(device =>
-            <Columns.Column key={device.name}>
+            <Columns.Column key={device.name} narrow={true}>
               <Device viewName={name} viewIsPublic={view.isPublic} deviceName={device.name} deviceTitle={device.title} />
             </Columns.Column>
           )}
