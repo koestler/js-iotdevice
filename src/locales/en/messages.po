@@ -34,7 +34,7 @@ msgid "Loading initial configuration"
 msgstr "Loading initial configuration"
 
 #: src/components/Header.js:27
-#: src/components/Login.js:46
+#: src/components/Login.js:47
 msgid "Log in"
 msgstr "Log in"
 
@@ -42,7 +42,7 @@ msgstr "Log in"
 msgid "Log out {0}"
 msgstr "Log out {0}"
 
-#: src/components/Login.js:14
+#: src/components/Login.js:15
 msgid "Login failed"
 msgstr "Login failed"
 
@@ -58,18 +58,14 @@ msgstr "Output successfully set."
 msgid "Output successfully set. Reloading..."
 msgstr "Output successfully set. Reloading..."
 
-#: src/components/Login.js:38
+#: src/components/Login.js:39
 msgid "Password"
 msgstr "Password"
 
-#: src/components/Login.js:30
+#: src/components/Login.js:31
 msgid "User"
 msgstr "User"
 
-#: src/components/Login.js:26
-msgid "You are logged in as {0}."
-msgstr "You are logged in as {0}."
-
-#: src/components/Login.js:13
+#: src/components/Login.js:14
 msgid "You have been logged in as {user}."
 msgstr "You have been logged in as {user}."
