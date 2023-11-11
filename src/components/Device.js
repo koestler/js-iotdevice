@@ -98,7 +98,7 @@ const Value = ({ register, value, changeValue }) => {
   }
 
   if (register.type === 'enum') {
-    if (changeValue !== undefined && register.controllable) {
+    if (changeValue !== undefined && register.commandable) {
       return <EnumControl registerName={register.name} value={value} enumDefinition={register.enum} changeValue={changeValue} />
     }
     return <EnumValue value={value} enumDefinition={register.enum} />
