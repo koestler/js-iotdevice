@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import { Button, Box, Form, Section, Heading } from 'react-bulma-components'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/auth'
@@ -9,7 +8,7 @@ import { toast } from 'bulma-toast'
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const { logout, isLoggedIn } = useAuth()
+  const { logout } = useAuth()
   const { login } = useLogin({
     onSucces: user => toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
     onError: () => toast({ message: t`Login failed`, type: 'is-danger' })
@@ -24,8 +23,6 @@ const Login = () => {
     <Section>
       <Heading renderAs='h2'>Log in</Heading>
       <Box style={{ maxWidth: 600, margin: 'auto' }}>
-        {isLoggedIn() && <Redirect to='/' />}
-        {!isLoggedIn() && (
           <form onSubmit={handleSubmit(onSubmit)}>
             <Form.Field>
               <Form.Label><Trans>User</Trans></Form.Label>
@@ -47,7 +44,6 @@ const Login = () => {
               <Button color='primary'><Trans>Log in</Trans></Button>
             </Button.Group>
           </form>
-        )}
       </Box>
     </Section>
   )
