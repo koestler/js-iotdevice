@@ -2,8 +2,8 @@ import React from 'react'
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { detect, fromStorage, fromNavigator } from '@lingui/detect-locale'
-import { messages as en } from './locales/en/messages'
-import { messages as de } from './locales/de/messages'
+import { messages as en } from './locales/en/messages.mjs'
+import { messages as de } from './locales/de/messages.mjs'
 
 export const locales = [
   { code: 'en', name: 'English' },
@@ -12,14 +12,10 @@ export const locales = [
 
 i18n.load('en', en)
 i18n.load('de', de)
-i18n.loadLocaleData({
-  en: { plurals: en },
-  de: { plurals: de }
-})
 
 let initialLang = detect(
   fromStorage('lang'),
-  fromNavigator().substr(0, 2),
+  fromNavigator(),
   () => 'en'
 )
 

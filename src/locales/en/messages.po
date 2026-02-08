@@ -13,59 +13,60 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Device.js:38
+#: src/components/Device.jsx:38
 msgid "Cannot change output."
 msgstr "Cannot change output."
 
-#: src/components/App.js:23
+#: src/components/App.jsx:23
 msgid "Cannot load configuration: {error}"
 msgstr "Cannot load configuration: {error}"
 
-#: src/components/Device.js:45
+#: src/components/Device.jsx:45
 msgid "Cannot load device registers."
 msgstr "Cannot load device registers."
 
-#: src/components/Device.js:46
+#: src/components/Device.jsx:46
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
 
-#: src/components/App.js:34
+#: src/components/App.jsx:34
 msgid "Loading initial configuration"
 msgstr "Loading initial configuration"
 
-#: src/components/Header.js:27
-#: src/components/Login.js:47
+#: src/components/Header.jsx:27
+#: src/components/Login.jsx:44
 msgid "Log in"
 msgstr "Log in"
 
-#: src/components/Header.js:32
+#. placeholder {0}: getUser()
+#: src/components/Header.jsx:32
 msgid "Log out {0}"
 msgstr "Log out {0}"
 
-#: src/components/Login.js:15
+#: src/components/Login.jsx:14
 msgid "Login failed"
 msgstr "Login failed"
 
-#: src/components/ConfiguredApp.js:45
+#: src/components/ConfiguredApp.jsx:45
 msgid "No views are defined. Check your config.yaml"
 msgstr "No views are defined. Check your config.yaml"
 
-#: src/components/Device.js:32
+#: src/components/Device.jsx:32
 msgid "Output successfully set."
 msgstr "Output successfully set."
 
-#: src/components/Device.js:34
+#: src/components/Device.jsx:34
 msgid "Output successfully set. Reloading..."
 msgstr "Output successfully set. Reloading..."
 
-#: src/components/Login.js:39
+#: src/components/Login.jsx:36
 msgid "Password"
 msgstr "Password"
 
-#: src/components/Login.js:31
+#: src/components/Login.jsx:28
 msgid "User"
 msgstr "User"
 
-#: src/components/Login.js:14
+#: src/components/Login.jsx:13
 msgid "You have been logged in as {user}."
 msgstr "You have been logged in as {user}."
