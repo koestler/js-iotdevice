@@ -6,8 +6,8 @@ WORKDIR /app
 COPY . /app
 RUN npm install
 
-RUN export REACT_APP_VERSION=`git describe --always --tags`; \
-  echo "version="$REACT_APP_VERSION; \
+RUN export VITE_VERSION=`git describe --always --tags`; \
+  echo "version="$VITE_VERSION; \
   npm run build
 
 # build final image

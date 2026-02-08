@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import LanguageSelector from './LanguageSelector'
 
+const frontendVersion = import.meta.env.VITE_VERSION
+
 const Footer = (props) => (
   <SimpleFooter {...props}>
     <LanguageSelector />
@@ -18,7 +20,7 @@ export const SimpleFooter = ({ children, backendVersion }) => {
           <p>
             <a href='https://github.com/koestler/go-iotdevice'><strong>go-iotdevice</strong> {backendVersion && ' (' + backendVersion + ')'}</a>
             {' '}and{' '}
-            <a href='https://github.com/koestler/js-iotdevice'><strong>js-iotdevice</strong> ({process.env.REACT_APP_VERSION})</a>.<br />
+            <a href='https://github.com/koestler/js-iotdevice'><strong>js-iotdevice</strong> ({frontendVersion})</a>.<br />
             The source code is available under <a href='https://github.com/koestler/go-iotdevice/blob/main/LICENSE'>MIT</a> on <a href='https://github.com/koestler'><FontAwesomeIcon icon={faGithub} /></a>.
           </p>
           {children}
