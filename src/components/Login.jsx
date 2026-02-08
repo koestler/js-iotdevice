@@ -3,7 +3,8 @@ import { Button, Box, Form, Section, Heading } from 'react-bulma-components'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../hooks/auth'
 import { useLogin } from '../hooks/unauthApi'
-import { Trans, t } from '@lingui/macro'
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { toast } from 'bulma-toast'
 
 const Login = () => {

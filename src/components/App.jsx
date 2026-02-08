@@ -2,7 +2,8 @@ import React, { Fragment } from 'react'
 import { Button, Container, Notification, Section } from 'react-bulma-components'
 import ConfiguredApp from './ConfiguredApp'
 import { useConfig } from '../hooks/unauthApi'
-import { Trans } from '@lingui/macro'
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react/macro";
 import { SimpleFooter } from './Footer'
 
 const App = () => {

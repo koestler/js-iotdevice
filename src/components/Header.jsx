@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
-import { Trans } from '@lingui/macro'
+import { Trans } from "@lingui/react/macro";
 import './Header.scss'
 
 const Header = ({ views, title }) => {
