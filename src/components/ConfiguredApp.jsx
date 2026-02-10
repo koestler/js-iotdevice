@@ -1,5 +1,4 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import Header from './Header'
 import View from './View'
 import Login from './Login'
@@ -16,9 +15,7 @@ const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
 
   return (
     <BrowserRouter>
-      <Helmet>
-        <title>{projectTitle}</title>
-      </Helmet>
+      <title>{projectTitle}</title>
       <Header title={projectTitle} views={myViews} />
       <Switch>
         {myViews.map(view =>
