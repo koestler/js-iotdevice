@@ -1,4 +1,4 @@
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Header from './Header'
 import View from './View'
 import Login from './Login'
@@ -17,17 +17,13 @@ const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
     <BrowserRouter>
       <title>{projectTitle}</title>
       <Header title={projectTitle} views={myViews} />
-      <Switch>
+      <Routes>
         {myViews.map(view =>
-          <Route key={view.name} path={`/${view.name}`}>
-            {isViewAllowed(view) ? <View {...view} /> : <Login />}
-          </Route>
+          <Route key={view.name} path={`/${view.name}`} element={isViewAllowed(view) ? <View {...view} /> : <Login />} />
         )}
-        <Route path='/login'>
-          <Login />
-        </Route>
-        <DefaultRoute default views={myViews} />
-      </Switch>
+        <Route path='/login' element={<Login />} />
+        <Route path='*' element={<DefaultRoute views={myViews} />} />
+      </Routes>
       <Footer backendVersion={backendVersion} />
     </BrowserRouter>
   )
@@ -46,7 +42,7 @@ const DefaultRoute = ({ views }) => {
   }
 
   const defaultView = views[0]
-  return <Redirect to={`/${defaultView.name}`} />
+  return <Navigate to={`/${defaultView.name}`} replace />
 }
 
 bulmaToast.setDefaults({
