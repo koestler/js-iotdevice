@@ -6,23 +6,9 @@ export default defineConfig({
   plugins: [
     react({
       babel: {
-        plugins: ['@lingui/babel-plugin-lingui-macro', 'macros']
+        plugins: ['@lingui/babel-plugin-lingui-macro']
       }
     }),
     lingui()
   ],
-  build: {
-    outDir: 'build'
-  },
-  resolve: {
-    alias: {
-      // Fix for Node.js modules being imported in browser context
-      path: false,
-      fs: false,
-      os: false
-    }
-  },
-  optimizeDeps: {
-    exclude: ['@lingui/macro']
-  }
 })

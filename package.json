@@ -1,7 +1,8 @@
 {
   "name": "js-iotdevice",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^7.2.0",
@@ -22,36 +23,23 @@
     "dev": "vite",
     "build": "lingui compile && vite build",
     "preview": "vite preview",
-    "lint": "standard",
-    "lint-fix": "standard --fix",
+    "lint": "eslint .",
     "extract": "lingui extract",
     "compile": "lingui compile"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@lingui/babel-plugin-lingui-macro": "^5.9.0",
     "@lingui/cli": "^5.9.0",
     "@lingui/vite-plugin": "^5.9.0",
-    "@vitejs/plugin-react": "^5.1.4",
-    "babel-plugin-macros": "^3.1.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
     "sass": "^1.51.0",
-    "standard": "^17.1.2",
     "vite": "^7.3.1"
   }
 }
