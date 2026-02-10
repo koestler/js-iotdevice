@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
 import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
-import { t } from "@lingui/core/macro";
-import { Trans } from "@lingui/react/macro";
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import './Device.scss'
 import { AutoplayContext } from './Autoplay'
 import Led from './Led'

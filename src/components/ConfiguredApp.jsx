@@ -6,7 +6,7 @@ import Login from './Login'
 import Footer from './Footer'
 import { Heading, Notification, Section } from 'react-bulma-components'
 import { useAuth } from '../hooks/auth'
-import { Trans } from "@lingui/react/macro";
+import { Trans } from '@lingui/react/macro'
 import * as bulmaToast from 'bulma-toast'
 
 const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {

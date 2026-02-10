@@ -9,17 +9,17 @@ export default defineConfig({
         plugins: ['@lingui/babel-plugin-lingui-macro', 'macros']
       }
     }),
-    lingui(),
+    lingui()
   ],
   build: {
-    outDir: 'build',
+    outDir: 'build'
   },
   resolve: {
     alias: {
       // Fix for Node.js modules being imported in browser context
       path: false,
       fs: false,
-      os: false,
+      os: false
     }
   },
   optimizeDeps: {
