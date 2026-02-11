@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
-
-export const AutoplayContext = React.createContext({ play: false, values: null })
+import { AutoplayContext } from './AutoplayContext'
 
 const Autoplay = ({ viewName, play, setPlay, setValues }) => {
   const [connectionState, setConnectionState] = useState('never started')

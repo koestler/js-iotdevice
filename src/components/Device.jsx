@@ -8,7 +8,7 @@ import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import './Device.scss'
-import { AutoplayContext } from './Autoplay'
+import { AutoplayContext } from './AutoplayContext'
 import Led from './Led'
 import { toast } from 'bulma-toast'
 

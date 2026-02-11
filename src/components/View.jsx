@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 
 import Device from './Device'
-import Autoplay, { AutoplayContext } from './Autoplay'
+import Autoplay from './Autoplay'
+import { AutoplayContext } from './AutoplayContext'
 import { Columns, Title, Section } from '@allxsmith/bestax-bulma'
 
 const View = (view) => {
