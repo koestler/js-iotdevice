@@ -34,13 +34,3 @@ export const activateLanguage = async (locale) => {
 export const getLanguage = () => {
   return i18n.locale
 }
-
-const TranslationProvider = ({ children }) => {
-  return (
-    <I18nProvider i18n={i18n}>
-      {children}
-    </I18nProvider>
-  )
-}
-
-export default TranslationProvider
