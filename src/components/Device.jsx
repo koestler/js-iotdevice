@@ -9,7 +9,6 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import './Device.scss'
 import { AutoplayContext } from './AutoplayContext'
-import Led from './Led'
 import { toast } from 'bulma-toast'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
@@ -42,7 +41,6 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   return (
     <HideableMessage header={<><p>{deviceTitle}</p></>}>
       <Message.Body>
-        <Led blinkOnChange={values} />
         {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
         {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
         {cSuccess && vSuccess && <ConfiguredDevice categories={categories} values={values} changeValue={changeValue} />}
