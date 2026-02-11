@@ -12,4 +12,4 @@ RUN export VITE_VERSION=`git describe --always --tags`; \
 
 # build final image
 FROM nginx:stable-alpine
-COPY --from=js-builder /app/build /usr/share/nginx/html
+COPY --from=js-builder /app/dist /usr/share/nginx/html
