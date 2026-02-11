@@ -1,12 +1,12 @@
 import React from 'react'
-import { Form } from '@allxsmith/bestax-bulma'
+import { Field, Control, Select } from '@allxsmith/bestax-bulma'
 import { activateLanguage, getLanguage, locales } from '../i18n'
 
 const LanguageSelector = () => {
   return (
-    <Form.Field>
-      <Form.Control>
-        <Form.Select
+    <Field>
+      <Control>
+        <Select
           onChange={event => { activateLanguage(event.target.value) }}
           value={getLanguage()}
         >
@@ -14,9 +14,9 @@ const LanguageSelector = () => {
             <option key={code} value={code}>
               {name}
             </option>)}
-        </Form.Select>
-      </Form.Control>
-    </Form.Field>
+        </Select>
+      </Control>
+    </Field>
   )
 }
 

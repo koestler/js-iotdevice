@@ -3,7 +3,7 @@ import Header from './Header'
 import View from './View'
 import Login from './Login'
 import Footer from './Footer'
-import { Heading, Notification, Section } from '@allxsmith/bestax-bulma'
+import { Title, Notification, Section } from '@allxsmith/bestax-bulma'
 import { useAuth } from '../hooks/auth'
 import { Trans } from '@lingui/react/macro'
 import * as bulmaToast from 'bulma-toast'
@@ -33,7 +33,7 @@ const DefaultRoute = ({ views }) => {
   if (views.length < 1) {
     return (
       <Section>
-        <Heading>Empty</Heading>
+        <Title>Empty</Title>
         <Notification>
           <Trans>No views are defined. Check your config.yaml</Trans>
         </Notification>

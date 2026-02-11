@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Heading, Button, Navbar } from '@allxsmith/bestax-bulma'
+import { Title, Button, Navbar } from '@allxsmith/bestax-bulma'
 import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons'
@@ -14,7 +14,7 @@ const Header = ({ views, title }) => {
   return (
     <Navbar color='primary' active={burgerActive}>
       <Navbar.Brand>
-        <Heading>{title}</Heading>
+        <Title>{title}</Title>
         <Navbar.Burger onClick={() => setBurgerActive(!burgerActive)} />
       </Navbar.Brand>
       <Navbar.Menu>

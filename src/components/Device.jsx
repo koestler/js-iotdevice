@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Message, Notification, Table, Form } from '@allxsmith/bestax-bulma'
+import { Message, Notification, Table, Control, Radio } from '@allxsmith/bestax-bulma'
 import HideableMessage from './HideableMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -135,9 +135,9 @@ const EnumValue = ({ value, enumDefinition }) => {
 const EnumControl = ({ registerName, value, enumDefinition, changeValue }) => {
   return (
     <td colSpan={3}>
-      <Form.Control>
+      <Control>
         {Object.keys(enumDefinition).sort().map((idx) => (
-          <Form.Radio
+          <Radio
             key={idx}
             name={registerName}
             value={idx}
@@ -145,10 +145,10 @@ const EnumControl = ({ registerName, value, enumDefinition, changeValue }) => {
             onChange={changeValue}
           >
             {enumDefinition[idx] ?? ''}
-          </Form.Radio>
+          </Radio>
         )
         )}
-      </Form.Control>
+      </Control>
     </td>
   )
 }

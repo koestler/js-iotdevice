@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import Device from './Device'
 import Autoplay, { AutoplayContext } from './Autoplay'
-import { Columns, Heading, Section } from '@allxsmith/bestax-bulma'
+import { Columns, Title, Section } from '@allxsmith/bestax-bulma'
 
 const View = (view) => {
   const { title, name, devices, autoplay } = view
@@ -11,10 +11,9 @@ const View = (view) => {
 
   return (
     <Section>
-
       <Columns>
         <Columns.Column>
-          <Heading renderAs='h2'>{title}</Heading>
+          <Title renderAs='h2'>{title}</Title>
         </Columns.Column>
         <Columns.Column size={2}>
           <Autoplay viewName={name} play={play} setPlay={setPlay} setValues={setValues} />
