@@ -37,7 +37,7 @@ export const useLogin = ({ onSucces, onError }) => {
       const response = await unauthApi.post('auth/login', { user, password })
       setLoginResponse(response.data)
       onSucces(user)
-    } catch (error) {
+    } catch {
       onError()
     }
   }
@@ -56,7 +56,7 @@ export const useCategories = (api, viewName, deviceName) => {
         const response = await api.get(`views/${viewName}/devices/${deviceName}/registers`)
         setData(mapRegistersToCategories(response.data))
         setSuccess(true)
-      } catch (error) {
+      } catch {
         setError(true)
       }
     }
