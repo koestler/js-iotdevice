@@ -13,14 +13,9 @@ const initialLoginResponse = JSON.parse(authStorage.getItem(storageKey))
 // setup react context API
 const authContext = createContext(null)
 
-export function AuthProvider ({ children }) {
-  const auth = useProvideAuth()
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>
-}
-
 export const useAuth = () => useContext(authContext)
 
-function useProvideAuth () {
+export function useProvideAuth () {
   const [loginResponse, setLoginResponseState] = useState(initialLoginResponse)
 
   const setLoginResponse = loginResponse => {
