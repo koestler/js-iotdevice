@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer as BulmaFooter, Container, Content } from 'react-bulma-components'
+import { Footer as BulmaFooter, Container, Content } from '@allxsmith/bestax-bulma'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import LanguageSelector from './LanguageSelector'

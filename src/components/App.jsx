@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Button, Container, Notification, Section } from 'react-bulma-components'
+import { Button, Container, Notification, Section } from '@allxsmith/bestax-bulma'
 import ConfiguredApp from './ConfiguredApp'
 import { useConfig } from '../hooks/unauthApi'
 import { Trans } from '@lingui/react/macro'

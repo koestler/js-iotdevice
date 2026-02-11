@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import { Button, Message } from 'react-bulma-components'
+import { Button, Message } from '@allxsmith/bestax-bulma'
 
 const HideableMessage = ({ header, children }) => {
   const [hide, setHide] = useState(false)

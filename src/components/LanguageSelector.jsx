@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'react-bulma-components'
+import { Form } from '@allxsmith/bestax-bulma'
 import { activateLanguage, getLanguage, locales } from '../i18n'
 
 const LanguageSelector = () => {

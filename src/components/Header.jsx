@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Heading, Button, Navbar } from 'react-bulma-components'
+import { Heading, Button, Navbar } from '@allxsmith/bestax-bulma'
 import { Link, NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons'

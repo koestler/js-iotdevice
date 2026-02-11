@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Message, Notification, Table, Form } from 'react-bulma-components'
+import { Message, Notification, Table, Form } from '@allxsmith/bestax-bulma'
 import HideableMessage from './HideableMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'

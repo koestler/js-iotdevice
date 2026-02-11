@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Box, Form, Section, Heading } from 'react-bulma-components'
+import { Button, Box, Form, Section, Heading } from '@allxsmith/bestax-bulma'
 import { useAuth } from '../hooks/auth'
 import { useLogin } from '../hooks/unauthApi'
 import { t } from '@lingui/core/macro'
