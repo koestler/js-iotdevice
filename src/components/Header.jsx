@@ -12,7 +12,7 @@ const Header = ({ views, title }) => {
   const { isLoggedIn, getUser, logout } = useAuth()
 
   return (
-    <Navbar color='primary' active={burgerActive}>
+    <Navbar color='primary' active={burgerActive ? true : undefined}>
       <Navbar.Brand>
         <Title>{title}</Title>
         <Navbar.Burger onClick={() => setBurgerActive(!burgerActive)} />
@@ -46,7 +46,7 @@ const Views = ({ views }) => {
       {views.map(view => {
         const allowed = isViewAllowed(view)
         return (
-          <Navbar.Item key={view.name} to={`/${view.name}`} active={false} as={NavLink}>
+          <Navbar.Item key={view.name} to={`/${view.name}`} as={NavLink}>
             {view.isPublic || <FontAwesomeIcon icon={allowed ? faLockOpen : faLock} />}
             {view.title}
           </Navbar.Item>

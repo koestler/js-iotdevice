@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Box, Section, Title, Field } from '@allxsmith/bestax-bulma'
+import { Button, Buttons, Box, Section, Title, Field } from '@allxsmith/bestax-bulma'
 import { useAuth } from '../hooks/auth'
 import { useLogin } from '../hooks/unauthApi'
 import { t } from '@lingui/core/macro'
@@ -17,33 +17,26 @@ const Login = () => {
     password: false
   }
 
-  const onSubmit = async data => {
-    logout()
-    login(data.user, data.password)
-  }
-
   return (
     <Section>
-      <Title renderAs='h2'>Log in</Title>
+      <Title as='h2'><Trans>Log in</Trans></Title>
       <Box style={{ maxWidth: 600, margin: 'auto' }}>
         <form>
-          <Field>
-            <Form.Label><Trans>User</Trans></Form.Label>
+          <Field label={<Trans>User</Trans>}>
             <input
               type='text'
               className={'input is-primary' + (errors.user ? ' is-danger' : '')}
             />
           </Field>
-          <Field>
-            <Form.Label><Trans>Password</Trans></Form.Label>
+          <Field label={<Trans>Password</Trans>}>
             <input
               type='password'
               className={'input is-primary' + (errors.password ? ' is-danger' : '')}
             />
           </Field>
-          <Button.Group align='right'>
+          <Buttons isRight>
             <Button color='primary'><Trans>Log in</Trans></Button>
-          </Button.Group>
+          </Buttons>
         </form>
       </Box>
     </Section>

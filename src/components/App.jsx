@@ -33,7 +33,7 @@ const Loading = () => {
       <Section>
         <Notification color='info'><Trans>Loading initial configuration</Trans></Notification>
         <Container>
-          <Button size='large' loading />
+          <Button size='large' isLoading />
         </Container>
       </Section>
       <SimpleFooter />
