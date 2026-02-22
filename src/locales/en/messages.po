@@ -21,11 +21,11 @@ msgstr "Cannot change output."
 msgid "Cannot load configuration: {error}"
 msgstr "Cannot load configuration: {error}"
 
-#: src/components/Device.jsx:45
+#: src/components/Device.jsx:44
 msgid "Cannot load device registers."
 msgstr "Cannot load device registers."
 
-#: src/components/Device.jsx:46
+#: src/components/Device.jsx:45
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
 
@@ -34,7 +34,8 @@ msgid "Loading initial configuration"
 msgstr "Loading initial configuration"
 
 #: src/components/Header.jsx:27
-#: src/components/Login.jsx:44
+#: src/components/Login.jsx:35
+#: src/components/Login.jsx:53
 msgid "Log in"
 msgstr "Log in"
 
@@ -43,11 +44,11 @@ msgstr "Log in"
 msgid "Log out {0}"
 msgstr "Log out {0}"
 
-#: src/components/Login.jsx:14
+#: src/components/Login.jsx:17
 msgid "Login failed"
 msgstr "Login failed"
 
-#: src/components/ConfiguredApp.jsx:45
+#: src/components/ConfiguredApp.jsx:38
 msgid "No views are defined. Check your config.yaml"
 msgstr "No views are defined. Check your config.yaml"
 
@@ -59,14 +60,22 @@ msgstr "Output successfully set."
 msgid "Output successfully set. Reloading..."
 msgstr "Output successfully set. Reloading..."
 
-#: src/components/Login.jsx:36
+#: src/components/Login.jsx:47
 msgid "Password"
 msgstr "Password"
 
-#: src/components/Login.jsx:28
+#: src/components/Login.jsx:42
 msgid "User"
 msgstr "User"
 
-#: src/components/Login.jsx:13
+#: src/components/Login.jsx:35
+#~ msgid "You are logged in as {0}."
+#~ msgstr "You are logged in as {0}."
+
+#: src/components/Login.jsx:37
+msgid "You are logged in as {user}."
+msgstr "You are logged in as {user}."
+
+#: src/components/Login.jsx:16
 msgid "You have been logged in as {user}."
 msgstr "You have been logged in as {user}."
