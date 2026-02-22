@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from '@allxsmith/bestax-bulma'
+import { Button, Buttons } from '@allxsmith/bestax-bulma'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
-import { AutoplayContext } from './AutoplayContext'
 
 const Autoplay = ({ viewName, play, setPlay, setValues }) => {
   const [connectionState, setConnectionState] = useState('never started')
@@ -90,11 +89,11 @@ const readyStateToString = (readyState) => {
 
 const AutoplayBox = ({ play, setPlay }) => {
   return (
-    <Button.Group align='right'>
+    <Buttons isRight>
       <Button onClick={() => setPlay(!play)}>
         <FontAwesomeIcon icon={play ? faStop : faPlay} />
       </Button>
-    </Button.Group>
+    </Buttons>
   )
 }
 

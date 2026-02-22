@@ -1,5 +1,6 @@
 import React from 'react'
-import { useProvideAuth } from './hooks/auth'
+import { useProvideAuth, authContext } from './hooks/auth'
+import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
 
 export function AuthProvider ({ children }) {

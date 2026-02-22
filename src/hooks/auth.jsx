@@ -11,7 +11,7 @@ const storeLoginResponse = loginResponse => {
 const initialLoginResponse = JSON.parse(authStorage.getItem(storageKey))
 
 // setup react context API
-const authContext = createContext(null)
+export const authContext = createContext(null)
 
 export const useAuth = () => useContext(authContext)
 

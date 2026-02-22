@@ -18,12 +18,12 @@ const Header = ({ views, title }) => {
         <Navbar.Burger onClick={() => setBurgerActive(!burgerActive)} />
       </Navbar.Brand>
       <Navbar.Menu>
-        <Navbar.Container>
+        <Navbar.Start>
           <Views views={views} />
-        </Navbar.Container>
-        <Navbar.Container align='end'>
+        </Navbar.Start>
+        <Navbar.End>
           {isLoggedIn() || (
-            <Navbar.Item renderAs={Link} to='/login'>
+            <Navbar.Item as={Link} to='/login'>
               <Button><Trans>Log in</Trans></Button>
             </Navbar.Item>
           )}
@@ -32,7 +32,7 @@ const Header = ({ views, title }) => {
               <Button onClick={logout}><Trans>Log out {getUser()}</Trans></Button>
             </Navbar.Item>
           )}
-        </Navbar.Container>
+        </Navbar.End>
       </Navbar.Menu>
     </Navbar>
   )
@@ -41,15 +41,18 @@ const Header = ({ views, title }) => {
 const Views = ({ views }) => {
   const { isViewAllowed } = useAuth()
 
-  return views.map(view => {
-    const allowed = isViewAllowed(view)
-    return (
-      <Navbar.Item key={view.name} to={`/${view.name}`} activeClassName='is-active' renderAs={NavLink}>
-        {view.isPublic || <FontAwesomeIcon icon={allowed ? faLockOpen : faLock} />}
-        {view.title}
-      </Navbar.Item>
-    )
-  }
+  return (
+    <>
+      {views.map(view => {
+        const allowed = isViewAllowed(view)
+        return (
+          <Navbar.Item key={view.name} to={`/${view.name}`} active={false} as={NavLink}>
+            {view.isPublic || <FontAwesomeIcon icon={allowed ? faLockOpen : faLock} />}
+            {view.title}
+          </Navbar.Item>
+        )
+      })}
+    </>
   )
 }
 

@@ -4,6 +4,7 @@ import Device from './Device'
 import Autoplay from './Autoplay'
 import { AutoplayContext } from './AutoplayContext'
 import { Columns, Title, Section } from '@allxsmith/bestax-bulma'
+import { Column } from '@allxsmith/bestax-bulma'
 
 const View = (view) => {
   const { title, name, devices, autoplay } = view
@@ -13,19 +14,19 @@ const View = (view) => {
   return (
     <Section>
       <Columns>
-        <Columns.Column>
-          <Title renderAs='h2'>{title}</Title>
-        </Columns.Column>
-        <Columns.Column size={2}>
+        <Column>
+          <Title as='h2'>{title}</Title>
+        </Column>
+        <Column size={2}>
           <Autoplay viewName={name} play={play} setPlay={setPlay} setValues={setValues} />
-        </Columns.Column>
+        </Column>
       </Columns>
       <AutoplayContext.Provider value={{ play, values }}>
         <Columns>
           {devices.map(device =>
-            <Columns.Column key={device.name} narrow>
+            <Column key={device.name} isNarrow>
               <Device viewName={name} viewIsPublic={view.isPublic} deviceName={device.name} deviceTitle={device.title} />
-            </Columns.Column>
+            </Column>
           )}
         </Columns>
       </AutoplayContext.Provider>
