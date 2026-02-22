@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Buttons, Box, Section, Title, Field } from '@allxsmith/bestax-bulma'
+import { Button, Buttons, Box, Section, Title, Field, Control, Input } from '@allxsmith/bestax-bulma'
 import { useAuth } from '../hooks/auth'
 import { useLogin } from '../hooks/unauthApi'
 import { t } from '@lingui/core/macro'
@@ -7,32 +7,39 @@ import { Trans } from '@lingui/react/macro'
 import { toast } from 'bulma-toast'
 
 const Login = () => {
-  const { logout } = useAuth()
+  const [userError, setUserError] = React.useState(false)
+  const [passwordError, setPasswordError] = React.useState(false)
+
   const { login } = useLogin({
-    onSucces: user => toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
+    onSuccess: user => toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
     onError: () => toast({ message: t`Login failed`, type: 'is-danger' })
   })
-  const errors = {
-    user: false,
-    password: false
+
+
+  const submit = async formData => {
+    const user = formData.get('user')
+    const password = formData.get('password')
+    setUserError(!user || user.length < 1)
+    setPasswordError(!password || password.length < 4)
+    if (user && user.length >= 1 && password && password.length >= 4) {
+      await login(user, password)
+    }
   }
 
   return (
     <Section>
       <Title as='h2'><Trans>Log in</Trans></Title>
       <Box style={{ maxWidth: 600, margin: 'auto' }}>
-        <form>
+        <form action={submit}>
           <Field label={<Trans>User</Trans>}>
-            <input
-              type='text'
-              className={'input is-primary' + (errors.user ? ' is-danger' : '')}
-            />
+            <Control>
+              <Input name='user' color={userError ? 'danger' : ''}/>
+            </Control>
           </Field>
           <Field label={<Trans>Password</Trans>}>
-            <input
-              type='password'
-              className={'input is-primary' + (errors.password ? ' is-danger' : '')}
-            />
+            <Control>
+              <Input name='password' type='password' color={passwordError ? 'danger' : ''} />
+            </Control>
           </Field>
           <Buttons isRight>
             <Button color='primary'><Trans>Log in</Trans></Button>

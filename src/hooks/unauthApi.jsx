@@ -29,14 +29,14 @@ export const useConfig = () => {
   return { config: data, success, error }
 }
 
-export const useLogin = ({ onSucces, onError }) => {
+export const useLogin = ({ onSuccess, onError }) => {
   const { setLoginResponse } = useAuth()
 
   const login = async (user, password) => {
     try {
       const response = await unauthApi.post('auth/login', { user, password })
       setLoginResponse(response.data)
-      onSucces(user)
+      onSuccess(user)
     } catch {
       onError()
     }
