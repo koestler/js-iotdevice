@@ -1,4 +1,5 @@
 import React from 'react'
+// eslint-disable-next-line no-unused-vars
 import { useProvideAuth, authContext } from './hooks/auth'
 import { I18nProvider } from '@lingui/react'
 import { i18n } from '@lingui/core'
