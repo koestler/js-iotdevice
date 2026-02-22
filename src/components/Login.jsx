@@ -9,28 +9,31 @@ import { toast } from 'bulma-toast'
 const Login = () => {
   const [userError, setUserError] = React.useState(false)
   const [passwordError, setPasswordError] = React.useState(false)
+  const formRef = React.useRef(null)
 
+  const { logout } = useAuth()
   const { login } = useLogin({
-    onSuccess: user => toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
+    onSuccess: user =>       toast({ message: t`You have been logged in as ${user}.`, type: 'is-success' }),
     onError: () => toast({ message: t`Login failed`, type: 'is-danger' })
   })
 
-
-  const submit = async formData => {
-    const user = formData.get('user')
-    const password = formData.get('password')
-    setUserError(!user || user.length < 1)
-    setPasswordError(!password || password.length < 4)
-    if (user && user.length >= 1 && password && password.length >= 4) {
+  const submit = async e => {
+      e.preventDefault()
+      const formData = new FormData(e.target)
+      const user = formData.get('user')
+      const password = formData.get('password')
+      setUserError(!user || user.length < 2)
+      setPasswordError(!password || password.length < 4)
+      logout()
       await login(user, password)
-    }
+
   }
 
   return (
     <Section>
       <Title as='h2'><Trans>Log in</Trans></Title>
       <Box style={{ maxWidth: 600, margin: 'auto' }}>
-        <form action={submit}>
+        <form ref={formRef} onSubmit={submit}>
           <Field label={<Trans>User</Trans>}>
             <Control>
               <Input name='user' color={userError ? 'danger' : ''}/>
