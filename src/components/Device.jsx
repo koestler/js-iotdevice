@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
 import { unauthApi, useCategories, useValues } from '../hooks/unauthApi'
-import { t } from '@lingui/core/macro'
-import { Trans } from '@lingui/react/macro'
+import { Trans, useLingui } from '@lingui/react/macro'
 import './Device.scss'
 import { AutoplayContext } from './AutoplayContext'
 import { toast } from 'bulma-toast'
 
 const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
+  const { t } = useLingui()
   const { values: autoPlayValues, play } = useContext(AutoplayContext)
   const { api, isLoggedIn } = useAuth()
   const { categories, success: cSuccess, error: cError } = useCategories(viewIsPublic ? unauthApi : api, viewName, deviceName)

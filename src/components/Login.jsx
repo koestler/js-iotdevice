@@ -2,8 +2,7 @@ import React from 'react'
 import {Button, Buttons, Box, Section, Title, Field, Control, Input, Notification} from '@allxsmith/bestax-bulma'
 import {useAuth} from '../hooks/auth'
 import {useLogin} from '../hooks/unauthApi'
-import {t} from '@lingui/core/macro'
-import {Trans} from '@lingui/react/macro'
+import {Trans, useLingui} from '@lingui/react/macro'
 import {toast} from 'bulma-toast'
 
 const Login = () => {
@@ -11,6 +10,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = React.useState(false)
   const formRef = React.useRef(null)
 
+  const {t} = useLingui()
   const {logout, isLoggedIn, getUser} = useAuth()
   const {login} = useLogin({
     onSuccess: user => toast({message: t`You have been logged in as ${user}.`, type: 'is-success'}),
