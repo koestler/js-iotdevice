@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react'
 import { Message, Notification, Table, Control, Radio } from '@allxsmith/bestax-bulma'
-import HideableMessage from './HideableMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
@@ -39,13 +38,11 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   }
 
   return (
-    <HideableMessage header={<><p>{deviceTitle}</p></>}>
-      <Message.Body>
-        {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
-        {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-        {cSuccess && vSuccess && <ConfiguredDevice categories={categories} values={values} changeValue={changeValue} />}
-      </Message.Body>
-    </HideableMessage>
+    <Message color='dark' title={deviceTitle}>
+      {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
+      {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
+      {cSuccess && vSuccess && <ConfiguredDevice categories={categories} values={values} changeValue={changeValue} />}
+    </Message>
   )
 }
 
