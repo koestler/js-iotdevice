@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Message, Notification, Table, Control, Radio } from '@allxsmith/bestax-bulma'
+import { Message, Notification, Table, Control, Radio, Tr, Td} from '@allxsmith/bestax-bulma'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../hooks/auth'
@@ -49,7 +49,7 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
 const ConfiguredDevice = ({ categories, values, changeValue }) => {
   return (
     <form>
-      <Table className='device'>
+      <Table isHoverable isFullwidth isNarrow className='device'>
         <tbody>
           {categories.map(c => <Category key={c.category} category={c.category} registers={c.registers} values={values} changeValue={changeValue} />)}
         </tbody>
@@ -62,12 +62,10 @@ const Category = ({ category, registers, values, changeValue }) => {
   const [hide, setHide] = useState(['Historic', 'Settings'].includes(category))
   return (
     <>
-      <tr className='subtitle' onClick={() => setHide(!hide)}>
-        <td colSpan={3}>{category}</td>
-        <td>
-          <FontAwesomeIcon icon={hide ? faEye : faEyeSlash} />
-        </td>
-      </tr>
+      <Tr className='subtitle' onClick={() => setHide(!hide)}>
+        <Td colSpan={3}>{category}</Td>
+        <Td><FontAwesomeIcon icon={hide ? faEye : faEyeSlash} /></Td>
+      </Tr>
       {!hide && registers.map((register, idx) =>
         <Line
           key={idx}
@@ -80,71 +78,70 @@ const Category = ({ category, registers, values, changeValue }) => {
 }
 
 const Line = ({ register, value, changeValue }) => {
-  return (
-    <tr>
-      <td>{register.description}</td>
-      <Value register={register} value={value} changeValue={changeValue} />
-    </tr>
-  )
-}
-
-const Value = ({ register, value, changeValue }) => {
   if (register.type === 'number') {
-    return <NumberValue value={value} unit={register.unit} />
+    return <NumberValue register={register} value={value} />
   }
 
   if (register.type === 'enum') {
     if (changeValue !== undefined && register.commandable) {
-      return <EnumControl registerName={register.name} value={value} enumDefinition={register.enum} changeValue={changeValue} />
+      return <EnumControl register={register} value={value} changeValue={changeValue} />
     }
-    return <EnumValue value={value} enumDefinition={register.enum} />
   }
 
-  return <TextValue value={value} />
+  return <TextValue register={register} value={value} />
 }
 
-const TextValue = ({ value }) => {
-  return <td colSpan={3}>{value}</td>
+const TextValue = ({ register, value }) => {
+  return (
+    <Tr className='text'>
+      <Td>{register.description}</Td>
+      <Td colSpan={3}>{value}</Td>
+    </Tr>
+  )
 }
 
-const NumberValue = ({ value, unit }) => {
-  let [hValue, hUnit] = readable(value, unit)
+const NumberValue = ({ register, value }) => {
+  let [hValue, hUnit] = readable(value, register.unit)
 
   hValue = Math.round(hValue * 100) / 100
   const strs = hValue.toString().split('.')
   const decimal = strs.length === 2
   return (
-    <>
-      <td>{strs[0]}</td>
-      {decimal && <td>.{strs[1]}</td>}
-      {decimal || <td />}
-      <td>{hUnit}</td>
-    </>
+    <Tr className='number'>
+      <Td>{register.description}</Td>
+      <Td>{strs[0]}</Td>
+      {decimal && <Td>.{strs[1]}</Td>}
+      {decimal || <Td />}
+      <Td>{hUnit}</Td>
+    </Tr>
   )
 }
 
-const EnumValue = ({ value, enumDefinition }) => {
-  return <TextValue value={enumDefinition[value] ?? ''} />
+const EnumValue = ({ register, value, enumDefinition }) => {
+  return
 }
 
-const EnumControl = ({ registerName, value, enumDefinition, changeValue }) => {
+const EnumControl = ({ register, value, changeValue }) => {
   return (
-    <td colSpan={3}>
-      <Control>
-        {Object.keys(enumDefinition).sort().map((idx) => (
-          <Radio
-            key={idx}
-            name={registerName}
-            value={idx}
-            checked={value === parseInt(idx)}
-            onChange={changeValue}
-          >
-            {enumDefinition[idx] ?? ''}
-          </Radio>
-        )
-        )}
-      </Control>
-    </td>
+    <Tr>
+      <Td>{register.description}</Td>
+      <Td colSpan={3}>
+        <Control>
+          {Object.keys(register.enum).sort().map((idx) => (
+            <Radio
+              key={idx}
+              name={register.name}
+              value={idx}
+              checked={value === parseInt(idx)}
+              onChange={changeValue}
+            >
+              {register.enum[idx] ?? ''}
+            </Radio>
+          )
+          )}
+        </Control>
+      </Td>
+    </Tr>
   )
 }
 
