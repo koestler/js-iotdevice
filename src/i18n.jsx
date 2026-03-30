@@ -30,7 +30,3 @@ export const activateLanguage = async (locale) => {
   window.localStorage.setItem('lang', locale)
   i18n.activate(locale)
 }
-
-export const getLanguage = () => {
-  return i18n.locale
-}
