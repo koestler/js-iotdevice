@@ -15,14 +15,14 @@ const View = (view) => {
     <Section>
       <Columns>
         <Column>
-          <Title as='h2'>{title}</Title>
+          <Title size='4' as='h2'>{title}</Title>
         </Column>
         <Column size={2}>
           <Autoplay viewName={name} play={play} setPlay={setPlay} setValues={setValues} />
         </Column>
       </Columns>
       <AutoplayContext.Provider value={{ play, values }}>
-        <Columns>
+        <Columns isMultiline>
           {devices.map(device =>
             <Column key={device.name} isNarrow>
               <Device viewName={name} viewIsPublic={view.isPublic} deviceName={device.name} deviceTitle={device.title} />
