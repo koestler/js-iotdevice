@@ -86,6 +86,7 @@ const Line = ({ register, value, changeValue }) => {
     if (changeValue !== undefined && register.commandable) {
       return <EnumControl register={register} value={value} changeValue={changeValue} />
     }
+    return <TextValue register={register} value={register.enum[value] ?? ''} />
   }
 
   return <TextValue register={register} value={value} />
