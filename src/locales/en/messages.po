@@ -13,7 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Device.jsx:38
+#: src/components/Footer.jsx:25
+msgid "and"
+msgstr "and"
+
+#: src/components/Device.jsx:37
 msgid "Cannot change output."
 msgstr "Cannot change output."
 
@@ -21,11 +25,11 @@ msgstr "Cannot change output."
 msgid "Cannot load configuration: {error}"
 msgstr "Cannot load configuration: {error}"
 
-#: src/components/Device.jsx:44
+#: src/components/Device.jsx:42
 msgid "Cannot load device registers."
 msgstr "Cannot load device registers."
 
-#: src/components/Device.jsx:45
+#: src/components/Device.jsx:43
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
 
@@ -52,11 +56,11 @@ msgstr "Login failed"
 msgid "No views are defined. Check your config.yaml"
 msgstr "No views are defined. Check your config.yaml"
 
-#: src/components/Device.jsx:32
+#: src/components/Device.jsx:31
 msgid "Output successfully set."
 msgstr "Output successfully set."
 
-#: src/components/Device.jsx:34
+#: src/components/Device.jsx:33
 msgid "Output successfully set. Reloading..."
 msgstr "Output successfully set. Reloading..."
 
@@ -64,13 +68,13 @@ msgstr "Output successfully set. Reloading..."
 msgid "Password"
 msgstr "Password"
 
+#: src/components/Footer.jsx:27
+msgid "The source code is available under <0>MIT</0> on {gh}."
+msgstr "The source code is available under <0>MIT</0> on {gh}."
+
 #: src/components/Login.jsx:42
 msgid "User"
 msgstr "User"
-
-#: src/components/Login.jsx:35
-#~ msgid "You are logged in as {0}."
-#~ msgstr "You are logged in as {0}."
 
 #: src/components/Login.jsx:37
 msgid "You are logged in as {user}."

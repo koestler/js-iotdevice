@@ -13,7 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/Device.jsx:38
+#: src/components/Footer.jsx:25
+msgid "and"
+msgstr "und"
+
+#: src/components/Device.jsx:37
 msgid "Cannot change output."
 msgstr "Konnte Ausgang nicht setzen."
 
@@ -21,11 +25,11 @@ msgstr "Konnte Ausgang nicht setzen."
 msgid "Cannot load configuration: {error}"
 msgstr "Kann Konfiguration nicht laden: {error}"
 
-#: src/components/Device.jsx:44
+#: src/components/Device.jsx:42
 msgid "Cannot load device registers."
 msgstr "Registerliste kann nicht geladen weden."
 
-#: src/components/Device.jsx:45
+#: src/components/Device.jsx:43
 msgid "Cannot load device values."
 msgstr "Messwerte können nicht geladen werden."
 
@@ -52,17 +56,21 @@ msgstr "Anmeldung fehlgeschlagen"
 msgid "No views are defined. Check your config.yaml"
 msgstr "Keine \"Views\" definiert. Siehe config.yaml"
 
-#: src/components/Device.jsx:32
+#: src/components/Device.jsx:31
 msgid "Output successfully set."
 msgstr "Ausgang gesetzt."
 
-#: src/components/Device.jsx:34
+#: src/components/Device.jsx:33
 msgid "Output successfully set. Reloading..."
 msgstr "Ausgang gesetzt. Lade..."
 
 #: src/components/Login.jsx:47
 msgid "Password"
 msgstr "Passwort"
+
+#: src/components/Footer.jsx:27
+msgid "The source code is available under <0>MIT</0> on {gh}."
+msgstr "Quellcode verfügbar unter <0>MIT</0> auf {gh}."
 
 #: src/components/Login.jsx:42
 msgid "User"
