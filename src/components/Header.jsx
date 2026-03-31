@@ -15,9 +15,14 @@ const Header = ({ views, title }) => {
     <Navbar color='primary' active={burgerActive ? true : undefined}>
       <Navbar.Brand>
         <Title>{title}</Title>
-        <Navbar.Burger onClick={() => setBurgerActive(!burgerActive)} />
+        <Navbar.Burger
+            active={burgerActive}
+            onClick={() => setBurgerActive(a => !a)}
+            aria-label='Menu'
+            aria-expanded={burgerActive}
+        />
       </Navbar.Brand>
-      <Navbar.Menu>
+      <Navbar.Menu active={burgerActive}>
         <Navbar.Start>
           <Views views={views} />
         </Navbar.Start>
