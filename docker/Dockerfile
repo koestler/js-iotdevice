@@ -1,5 +1,5 @@
 # build frontend
-FROM node:25 as js-builder
+FROM node:25 AS js-builder
 ENV GENERATE_SOURCEMAP=false
 
 WORKDIR /app
