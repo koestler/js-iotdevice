@@ -41,28 +41,56 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
     <Message color='dark' title={deviceTitle}>
       {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
       {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
-      {cSuccess && vSuccess && <ConfiguredDevice categories={categories} values={values} changeValue={changeValue} />}
+      {cSuccess && vSuccess && <ConfiguredDevice
+          storageKeyPrefix={`view-${viewName}-device-${deviceName}`}
+          categories={categories}
+          values={values}
+          changeValue={changeValue} />}
     </Message>
   )
 }
 
-const ConfiguredDevice = ({ categories, values, changeValue }) => {
+const ConfiguredDevice = ({ storageKeyPrefix, categories, values, changeValue }) => {
   return (
     <form>
       <Table isHoverable isFullwidth isNarrow className='device'>
         <tbody>
-          {categories.map(c => <Category key={c.category} category={c.category} registers={c.registers} values={values} changeValue={changeValue} />)}
+          {categories.map(c => <Category
+              key={`${storageKeyPrefix}-category-${c.category}`}
+              storageKeyPrefix={`${storageKeyPrefix}-category-${c.category}`}
+              category={c.category}
+              registers={c.registers}
+              values={values}
+              changeValue={changeValue}
+          />)}
         </tbody>
       </Table>
     </form>
   )
 }
 
-const Category = ({ category, registers, values, changeValue }) => {
-  const [hide, setHide] = useState(['Historic', 'Settings'].includes(category))
+const Category = ({ storageKeyPrefix, category, registers, values, changeValue }) => {
+  const storageKey = `${storageKeyPrefix}-hide`
+
+  const getInitialHideState = () => {
+    const savedState = localStorage.getItem(storageKey)
+    if (savedState !== null) {
+      return savedState === true.toString()
+    }
+    return ['Historic', 'Settings'].includes(category)
+  }
+
+  const [hide, setHide] = useState(getInitialHideState)
+
+  const toggleHide = () => {
+    const newHideState = !hide
+    setHide(newHideState)
+    localStorage.setItem(storageKey, newHideState.toString())
+  }
+
   return (
     <>
-      <Tr className='subtitle' onClick={() => setHide(!hide)}>
+      <Tr className='subtitle' onClick={toggleHide}>
         <Td colSpan={3}>{category}</Td>
         <Td><FontAwesomeIcon icon={hide ? faEye : faEyeSlash} /></Td>
       </Tr>
