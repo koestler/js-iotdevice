@@ -1,5 +1,8 @@
-.device tr.number td:nth-child(2) {
+.device tr td:nth-child(2) {
   text-align: right;
+}
+
+.device tr.number td:nth-child(2) {
   padding-right: 0;
 }
 
