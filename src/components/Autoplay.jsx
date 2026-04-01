@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Buttons } from '@allxsmith/bestax-bulma'
+import { Button } from '@allxsmith/bestax-bulma'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faStop } from '@fortawesome/free-solid-svg-icons'
 import useWebSocket, { ReadyState } from 'react-use-websocket'
 import { useAuth } from '../hooks/auth'
 
-const Autoplay = ({ viewName, play, setPlay, setValues }) => {
+const Autoplay = ({ viewName, play, setPlay, setValues, setUpdated }) => {
   const [connectionState, setConnectionState] = useState('never started')
 
   // set play=false when ws connection was closed
@@ -18,12 +18,12 @@ const Autoplay = ({ viewName, play, setPlay, setValues }) => {
   return (
     <>
       <AutoplayBox play={play} setPlay={setPlay} />
-      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} setValues={setValues} />}
+      {play && <Websocket viewName={viewName} setConnectionState={setConnectionState} setValues={setValues} setUpdated={setUpdated} />}
     </>
   )
 }
 
-const Websocket = ({ viewName, setConnectionState, setValues }) => {
+const Websocket = ({ viewName, setConnectionState, setValues, setUpdated }) => {
   const { isLoggedIn, getToken } = useAuth()
   const { lastJsonMessage, readyState, sendJsonMessage } = useWebSocket(websocketUrl(`views/${viewName}/ws`))
 
@@ -41,8 +41,9 @@ const Websocket = ({ viewName, setConnectionState, setValues }) => {
           }
         })
       })
+      setUpdated(Date.now())
     }
-  }, [lastJsonMessage, setValues])
+  }, [lastJsonMessage, setValues, setUpdated])
 
   // send authentication message after connect when logged in
   useEffect(() => {
@@ -89,11 +90,9 @@ const readyStateToString = (readyState) => {
 
 const AutoplayBox = ({ play, setPlay }) => {
   return (
-    <Buttons isRight>
       <Button onClick={() => setPlay(!play)}>
         <FontAwesomeIcon icon={play ? faStop : faPlay} />
       </Button>
-    </Buttons>
   )
 }
 

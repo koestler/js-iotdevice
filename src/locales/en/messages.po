@@ -33,18 +33,22 @@ msgstr "Cannot load device registers."
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
 
+#: src/components/View.jsx:33
+msgid "Last updated {ago} ago"
+msgstr "Last updated {ago} ago"
+
 #: src/components/App.jsx:34
 msgid "Loading initial configuration"
 msgstr "Loading initial configuration"
 
-#: src/components/Header.jsx:27
+#: src/components/Header.jsx:32
 #: src/components/Login.jsx:35
 #: src/components/Login.jsx:53
 msgid "Log in"
 msgstr "Log in"
 
 #. placeholder {0}: getUser()
-#: src/components/Header.jsx:32
+#: src/components/Header.jsx:37
 msgid "Log out {0}"
 msgstr "Log out {0}"
 

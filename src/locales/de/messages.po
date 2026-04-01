@@ -33,18 +33,22 @@ msgstr "Registerliste kann nicht geladen weden."
 msgid "Cannot load device values."
 msgstr "Messwerte können nicht geladen werden."
 
+#: src/components/View.jsx:33
+msgid "Last updated {ago} ago"
+msgstr "Letzte Aktualisierung vor {ago}"
+
 #: src/components/App.jsx:34
 msgid "Loading initial configuration"
 msgstr "Lade Konfiguration"
 
-#: src/components/Header.jsx:27
+#: src/components/Header.jsx:32
 #: src/components/Login.jsx:35
 #: src/components/Login.jsx:53
 msgid "Log in"
 msgstr "Anmelden"
 
 #. placeholder {0}: getUser()
-#: src/components/Header.jsx:32
+#: src/components/Header.jsx:37
 msgid "Log out {0}"
 msgstr "Abmelden {0}"
 
