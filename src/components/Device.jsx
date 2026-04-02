@@ -40,7 +40,7 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
   const unavailable = values && 'Available' in values && values["Available"] == 0
 
   return (
-    <Message color='dark' title={deviceTitle}>
+    <Message color='dark' className='device' title={deviceTitle}>
       {unavailable && <Notification color='warning'><Trans>Device is unavailable.</Trans></Notification>}
       {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
       {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
@@ -56,7 +56,7 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
 const ConfiguredDevice = ({ storageKeyPrefix, categories, values, changeValue }) => {
   return (
     <form>
-      <Table isHoverable isFullwidth isNarrow className='device'>
+      <Table isHoverable isFullwidth isNarrow isResponsive>
         <tbody>
           {categories.filter(c => c.category !== "Available").map(c => <Category
               key={`${storageKeyPrefix}-category-${c.category}`}
@@ -94,8 +94,8 @@ const Category = ({ storageKeyPrefix, category, registers, values, changeValue }
   return (
     <>
       <Tr className='subtitle' onClick={toggleHide}>
-        <Td colSpan={3}>{category}</Td>
-        <Td><FontAwesomeIcon icon={hide ? faEye : faEyeSlash} /></Td>
+        <Td colSpan={2}>{category}</Td>
+        <Td colSpan={2}><FontAwesomeIcon icon={hide ? faEye : faEyeSlash} /></Td>
       </Tr>
       {!hide && registers.map((register, idx) =>
         <Line

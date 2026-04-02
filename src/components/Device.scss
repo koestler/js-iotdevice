@@ -13,3 +13,9 @@
 .device tr.text td:nth-child(2) {
   text-align: right;
 }
+
+@media screen and (max-width: 420px) {
+  .device .message-body {
+    padding: 1.25em 0.3em;
+  }
+}
