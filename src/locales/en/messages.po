@@ -25,13 +25,17 @@ msgstr "Cannot change output."
 msgid "Cannot load configuration: {error}"
 msgstr "Cannot load configuration: {error}"
 
-#: src/components/Device.jsx:42
+#: src/components/Device.jsx:45
 msgid "Cannot load device registers."
 msgstr "Cannot load device registers."
 
-#: src/components/Device.jsx:43
+#: src/components/Device.jsx:46
 msgid "Cannot load device values."
 msgstr "Cannot load device values."
+
+#: src/components/Device.jsx:44
+msgid "Device is unavailable."
+msgstr "Device is unavailable."
 
 #: src/components/View.jsx:33
 msgid "Last updated {ago} ago"

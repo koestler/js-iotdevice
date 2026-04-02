@@ -37,8 +37,11 @@ const Device = ({ viewName, viewIsPublic, deviceName, deviceTitle }) => {
     ).catch(() => toast({ message: t`Cannot change output.`, type: 'is-danger' }))
   }
 
+  const unavailable = values && 'Available' in values && values["Available"] == 0
+
   return (
     <Message color='dark' title={deviceTitle}>
+      {unavailable && <Notification color='warning'><Trans>Device is unavailable.</Trans></Notification>}
       {cError && <Notification color='danger'><Trans>Cannot load device registers.</Trans></Notification>}
       {vError && <Notification color='danger'><Trans>Cannot load device values.</Trans></Notification>}
       {cSuccess && vSuccess && <ConfiguredDevice
