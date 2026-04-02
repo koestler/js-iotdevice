@@ -19,7 +19,7 @@ const ConfiguredApp = ({ projectTitle, backendVersion, views }) => {
       <Header title={projectTitle} views={myViews} />
       <Routes>
         {myViews.map(view =>
-          <Route key={view.name} path={`/${view.name}`} element={isViewAllowed(view) ? <View {...view} /> : <Login />} />
+          <Route key={view.name} path={`/${view.name}`} element={isViewAllowed(view) ? <View key={view.name} {...view} /> : <Login />} />
         )}
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<DefaultRoute views={myViews} />} />
