@@ -58,7 +58,7 @@ const ConfiguredDevice = ({ storageKeyPrefix, categories, values, changeValue })
     <form>
       <Table isHoverable isFullwidth isNarrow className='device'>
         <tbody>
-          {categories.map(c => <Category
+          {categories.filter(c => c.category !== "Available").map(c => <Category
               key={`${storageKeyPrefix}-category-${c.category}`}
               storageKeyPrefix={`${storageKeyPrefix}-category-${c.category}`}
               category={c.category}
