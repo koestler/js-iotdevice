@@ -15,8 +15,8 @@
     "axios": "^1.20.0",
     "bulma": "^1.0.4",
     "bulma-toast": "^2.4.4",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.4",
     "react-use-websocket": "^4.13.0"
   },
@@ -39,8 +39,8 @@
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
-    "globals": "^17.12.0",
-    "sass": "^1.104.1",
-    "vite": "^7.3.6"
+    "globals": "^17.13.0",
+    "sass": "^1.106.1",
+    "vite": "^7.3.7"
   }
 }
