@@ -17,6 +17,9 @@ of a nginx docker image.
 When uses together with [go-iotsensor](https://github.com/koestler/go-iotsensor) the nginx server is not
 used and the files are served directly by the backend.
 
+### Release tarball
+Every `v*` tag publishes `js-iotdevice-<tag>.tar.gz` and `SHA256SUMS` as GitHub Release assets.
+
 ## Development
 In the backend config, configure the http-server as follows:
 ```yaml
